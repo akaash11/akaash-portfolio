@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Section from '@/components/Section';
 import { Box, Typography } from '@mui/material';
 
@@ -14,9 +15,9 @@ export default function Home() {
           <Hero />
         </Box>
 
-        {/* About Section - Will be built in Phase 3 */}
+        {/* About Section */}
         <Section id="about" title="About" bgcolor="background.paper">
-          <Typography>About section coming soon...</Typography>
+          <About />
         </Section>
 
         {/* Experience Section - Will be built in Phase 4 */}
