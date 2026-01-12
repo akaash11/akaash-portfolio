@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Timeline from '@/components/Timeline';
 import Section from '@/components/Section';
 import { Box, Typography } from '@mui/material';
 
@@ -20,9 +21,9 @@ export default function Home() {
           <About />
         </Section>
 
-        {/* Experience Section - Will be built in Phase 4 */}
+        {/* Experience Section */}
         <Section id="experience" title="Experience">
-          <Typography>Experience section coming soon...</Typography>
+          <Timeline />
         </Section>
 
         {/* Projects Section - Will be built in Phase 5 */}
