@@ -17,12 +17,12 @@ export default function Home() {
         </Box>
 
         {/* About Section */}
-        <Section id="about" title="About" bgcolor="background.paper">
+        <Section id="about" bgcolor="background.paper">
           <About />
         </Section>
 
         {/* Experience Section */}
-        <Section id="experience" title="Experience">
+        <Section id="experience">
           <Timeline />
         </Section>
 

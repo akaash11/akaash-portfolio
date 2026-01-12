@@ -18,7 +18,7 @@ export default function Section({ id, title, children, bgcolor, noPadding = fals
       component="section"
       sx={{
         minHeight: id === 'home' ? '100vh' : 'auto',
-        py: noPadding ? 0 : { xs: 8, md: 12 },
+        py: noPadding ? 0 : { xs: 6, md: 10 },
         bgcolor: bgcolor || 'transparent',
         scrollMarginTop: '80px', // Offset for fixed navbar
       }}
