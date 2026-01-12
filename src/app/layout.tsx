@@ -15,19 +15,69 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Akaash Trivedi | Full Stack Engineer",
-  description: "Portfolio of Akaash Trivedi - Full Stack Engineer with 7 years of experience specializing in React, TypeScript, Node.js, and cloud technologies.",
-  keywords: ["Akaash Trivedi", "Full Stack Engineer", "Software Developer", "React", "TypeScript", "Node.js"],
-  authors: [{ name: "Akaash Trivedi" }],
+  description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience. Specializing in scalable systems, APIs, cloud architecture, and full-stack development with React, TypeScript, Node.js, Python, and AWS.",
+  keywords: [
+    "Akaash Trivedi",
+    "Full Stack Engineer",
+    "Senior Software Engineer",
+    "Software Developer",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "AWS",
+    "Marvell Technology",
+    "Santa Clara University",
+    "HCI Research",
+    "System Design",
+    "API Development",
+    "Cloud Architecture",
+  ],
+  authors: [{ name: "Akaash Trivedi", url: "https://www.linkedin.com/in/akaash-trivedi" }],
+  creator: "Akaash Trivedi",
+  publisher: "Akaash Trivedi",
+  metadataBase: new URL("https://akaash-portfolio.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Akaash Trivedi | Full Stack Engineer",
-    description: "Portfolio of Akaash Trivedi - Full Stack Engineer with 7 years of experience",
+    description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience specializing in scalable systems, APIs, and cloud architecture.",
+    url: "https://akaash-portfolio.vercel.app",
+    siteName: "Akaash Trivedi Portfolio",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png", // You can add this image later
+        width: 1200,
+        height: 630,
+        alt: "Akaash Trivedi - Full Stack Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Akaash Trivedi | Full Stack Engineer",
-    description: "Portfolio of Akaash Trivedi - Full Stack Engineer with 7 years of experience",
+    description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience",
+    creator: "@akaasht",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add these when you verify your site
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
   },
 };
 

@@ -4,6 +4,9 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+// import Play from '@/components/Play'; // Reserved for future use
 import Section from '@/components/Section';
 import { Box, Typography } from '@mui/material';
 
@@ -13,7 +16,7 @@ export default function Home() {
       <Navbar />
       <Box component="main">
         {/* Home Section */}
-        <Box id="home" component="section" sx={{ scrollMarginTop: '80px' }}>
+        <Box id="home" component="section" sx={{ scrollMarginTop: '94px' }}>
           <Hero />
         </Box>
 
@@ -32,26 +35,18 @@ export default function Home() {
           <Projects />
         </Section>
 
-        {/* Research Section - Will be built in Phase 6 */}
-        <Section id="research" title="Research">
-          <Typography>Research section coming soon...</Typography>
-        </Section>
+        {/* Play Section - Reserved for future use */}
+        {/* <Section id="play" title="Play">
+          <Play />
+        </Section> */}
 
-        {/* Design Section - Will be built in Phase 6 */}
-        <Section id="design" title="System Design" bgcolor="background.paper">
-          <Typography>System Design section coming soon...</Typography>
-        </Section>
-
-        {/* Play Section - Will be built in Phase 6 */}
-        <Section id="play" title="Play">
-          <Typography>Play section coming soon...</Typography>
-        </Section>
-
-        {/* Contact Section - Will be built in Phase 7 */}
-        <Section id="contact" title="Contact" bgcolor="background.paper">
-          <Typography>Contact section coming soon...</Typography>
+        {/* Contact Section */}
+        <Section id="contact" title="Contact">
+          <Contact />
         </Section>
       </Box>
+      
+      <Footer />
     </>
   );
 }

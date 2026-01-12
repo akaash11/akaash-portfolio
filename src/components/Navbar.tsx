@@ -22,9 +22,7 @@ const sections = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'research', label: 'Research' },
-  { id: 'design', label: 'Design' },
-  { id: 'play', label: 'Play' },
+  // { id: 'play', label: 'Play' }, // Reserved for future use
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -35,7 +33,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      const scrollPosition = window.scrollY + 125; // Offset for navbar height + buffer
       
       // Handle scroll trigger for navbar background
       setScrolled(window.scrollY > 50);
@@ -62,7 +60,7 @@ export default function Navbar() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Navbar height
+      const offset = 94; // Navbar height + padding
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
