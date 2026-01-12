@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Timeline from '@/components/Timeline';
+import Projects from '@/components/Projects';
 import Section from '@/components/Section';
 import { Box, Typography } from '@mui/material';
 
@@ -26,9 +27,9 @@ export default function Home() {
           <Timeline />
         </Section>
 
-        {/* Projects Section - Will be built in Phase 5 */}
+        {/* Projects Section */}
         <Section id="projects" title="Projects" bgcolor="background.paper">
-          <Typography>Projects section coming soon...</Typography>
+          <Projects />
         </Section>
 
         {/* Research Section - Will be built in Phase 6 */}
