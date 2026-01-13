@@ -1,5 +1,37 @@
 # Setup Instructions
 
+## Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+# Contact Form - Resend API
+# Get your API key from: https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Email address to receive contact form submissions
+CONTACT_TO_EMAIL=akaashtrivedi2@gmail.com
+
+# Email address to send from (must be verified domain in Resend)
+# Example: noreply@yourdomain.com or use onboarding@resend.dev for testing
+CONTACT_FROM_EMAIL=onboarding@resend.dev
+```
+
+### Setting up Resend (Email Provider)
+
+1. Sign up at [resend.com](https://resend.com)
+2. Get your API key from the dashboard
+3. Add the API key to your `.env.local` file
+4. For production, verify your domain in Resend to send from your own domain
+5. For testing, you can use `onboarding@resend.dev` as the from address
+
+### Deploying to Vercel
+
+Add these environment variables in your Vercel project settings:
+- Go to Project Settings → Environment Variables
+- Add `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL`
+- Redeploy for changes to take effect
+
 ## Required Files
 
 ### 1. Resume PDF

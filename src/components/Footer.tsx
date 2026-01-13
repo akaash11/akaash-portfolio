@@ -17,7 +17,7 @@ export default function Footer() {
         borderTop: '1px solid',
         borderColor: 'divider',
         py: 3,
-        mt: 8,
+        mt: 2,
         bgcolor: 'background.default',
       }}
     >

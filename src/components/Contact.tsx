@@ -104,20 +104,36 @@ export default function Contact() {
     });
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Form submitted:', {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          honeypot: formData.honeypot,
+        }),
       });
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '', honeypot: '' });
+      const data = await response.json();
 
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
+      if (response.ok && data.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '', honeypot: '' });
+
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        console.error('Form submission failed:', data.error || 'Unknown error');
+        setSubmitStatus('error');
+        
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      }
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
