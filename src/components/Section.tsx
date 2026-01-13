@@ -9,18 +9,19 @@ interface SectionProps {
   children: React.ReactNode;
   bgcolor?: string;
   noPadding?: boolean;
+  compactPadding?: boolean;
 }
 
-export default function Section({ id, title, children, bgcolor, noPadding = false }: SectionProps) {
+export default function Section({ id, title, children, bgcolor, noPadding = false, compactPadding = false }: SectionProps) {
   return (
     <Box
       id={id}
       component="section"
       sx={{
         minHeight: id === 'home' ? '100vh' : 'auto',
-        py: noPadding ? 0 : { xs: 6, md: 10 },
+        py: noPadding ? 0 : compactPadding ? { xs: 4, md: 6 } : { xs: 6, md: 10 },
         bgcolor: bgcolor || 'transparent',
-        scrollMarginTop: '80px', // Offset for fixed navbar
+        scrollMarginTop: '65px', // Offset for fixed navbar
       }}
     >
       <Container maxWidth="lg">

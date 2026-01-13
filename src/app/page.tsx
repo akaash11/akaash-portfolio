@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar />
       <Box component="main">
         {/* Home Section */}
-        <Box id="home" component="section" sx={{ scrollMarginTop: '94px' }}>
+        <Box id="home" component="section" sx={{ scrollMarginTop: '65px' }}>
           <Hero />
         </Box>
 
@@ -31,7 +31,7 @@ export default function Home() {
         </Section>
 
         {/* Projects Section */}
-        <Section id="projects" title="Projects" bgcolor="background.paper">
+        <Section id="projects" title="Projects" bgcolor="background.paper" compactPadding>
           <Projects />
         </Section>
 
@@ -41,7 +41,7 @@ export default function Home() {
         </Section> */}
 
         {/* Contact Section */}
-        <Section id="contact" title="Contact">
+        <Section id="contact" title="Contact" compactPadding>
           <Contact />
         </Section>
       </Box>
