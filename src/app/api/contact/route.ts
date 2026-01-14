@@ -11,7 +11,11 @@ interface ContactFormData {
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting: 5 requests per hour per IP
-    const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? 'unknown';
+    // Get IP from headers (Vercel automatically sets these)
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const realIp = request.headers.get('x-real-ip');
+    const ip = forwardedFor?.split(',')[0].trim() ?? realIp ?? 'unknown';
+    
     const rateLimitResult = checkRateLimit(ip, {
       maxRequests: 5,
       windowSeconds: 3600, // 1 hour
