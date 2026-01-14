@@ -16,11 +16,13 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
   - Dynamic About section with expandable tech stack
   - Filterable Experience timeline with collapsible cards
   - Project showcase with badges and live links
-  - Contact form with spam protection
+  - Contact form with Resend integration
 - **Performance Optimized**: Fast loading, smooth scrolling, minimal dependencies
-- **SEO Ready**: Comprehensive meta tags, Open Graph, Twitter Cards
-- **Analytics Ready**: Scaffolded for easy integration with Plausible/Umami/GA4
-- **Accessibility**: Keyboard navigation, ARIA labels, proper contrast ratios
+- **SEO Optimized**: Structured data (JSON-LD), meta tags, Open Graph, sitemap
+- **Security Hardened**: XSS protection, GDPR compliant, honeypot spam filter
+- **Accessibility**: WCAG 2.1 AA compliant, keyboard navigation, reduced motion support
+- **Error Handling**: React Error Boundary prevents full app crashes
+- **Analytics Ready**: Scaffolded for Plausible/Umami/GA4 integration
 
 ## 📁 Project Structure
 
@@ -142,12 +144,27 @@ Edit `src/theme/theme.ts` to customize:
 
 ## 🚀 Deployment
 
+### Before Deploying
+
+1. **Add Required Assets** (see `public/ASSETS_README.md`):
+   - Resume PDF (`public/resume.pdf`)
+   - OG image (`public/og-image.png`) - 1200x630
+   - Favicon set (optional but recommended)
+
+2. **Set Environment Variables**:
+   ```bash
+   RESEND_API_KEY=your_resend_api_key
+   CONTACT_TO_EMAIL=akaashtrivedi2@gmail.com
+   CONTACT_FROM_EMAIL=onboarding@resend.dev
+   NEXT_PUBLIC_SITE_URL=https://akaasht.vercel.app
+   ```
+
 ### Deploy to Vercel (Recommended)
 
 1. Push your code to GitHub
 2. Import your repository on [Vercel](https://vercel.com)
 3. Vercel will automatically detect Next.js and deploy
-4. Set environment variables in Vercel dashboard if needed
+4. Add environment variables in Vercel project settings
 
 ### Other Platforms
 
@@ -196,7 +213,8 @@ The contact form is integrated with [Resend](https://resend.com) for email deliv
 **Features:**
 - Server-side validation
 - Honeypot spam protection
-- HTML sanitization for security
+- Rate limiting (5 requests per hour per IP)
+- HTML sanitization for XSS protection
 - Real-time form validation
 - Success/error notifications
 

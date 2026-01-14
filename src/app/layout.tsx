@@ -87,8 +87,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Structured data for SEO (JSON-LD)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: siteConfig.author.name,
+    jobTitle: siteConfig.author.title,
+    email: siteConfig.author.email,
+    url: siteConfig.url,
+    sameAs: [
+      siteConfig.social.linkedin,
+      siteConfig.social.github,
+      siteConfig.social.twitter,
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: siteConfig.author.location,
+      addressCountry: "US",
+    },
+    alumniOf: {
+      "@type": "Organization",
+      name: "Santa Clara University",
+    },
+    worksFor: {
+      "@type": "Organization",
+      name: "Marvell Technology",
+    },
+  };
+
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+      <head>
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>

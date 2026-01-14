@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit } from '@/utils/rate-limit';
 
 interface ContactFormData {
   name: string;
@@ -9,6 +10,32 @@ interface ContactFormData {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting: 5 requests per hour per IP
+    const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? 'unknown';
+    const rateLimitResult = checkRateLimit(ip, {
+      maxRequests: 5,
+      windowSeconds: 3600, // 1 hour
+    });
+
+    if (!rateLimitResult.success) {
+      const retryAfterMinutes = Math.ceil(rateLimitResult.resetInSeconds / 60);
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Too many requests. Please try again in ${retryAfterMinutes} minute${retryAfterMinutes !== 1 ? 's' : ''}.`,
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitResult.resetInSeconds.toString(),
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': rateLimitResult.resetInSeconds.toString(),
+          },
+        }
+      );
+    }
+
     const body: ContactFormData = await request.json();
 
     // Honeypot check - silently reject bots
@@ -121,7 +148,17 @@ export async function POST(request: NextRequest) {
       console.log('Email sent successfully:', resendData.id);
     }
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json(
+      { ok: true },
+      {
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': rateLimitResult.resetInSeconds.toString(),
+        },
+      }
+    );
 
   } catch (error) {
     console.error('Contact form error:', error);
