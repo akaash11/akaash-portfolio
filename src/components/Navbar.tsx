@@ -135,11 +135,12 @@ export default function Navbar() {
           </Typography>
 
           {/* Desktop Navigation */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }} component="nav" aria-label="Main navigation">
             {sections.map((section) => (
               <Button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
+                aria-current={activeSection === section.id ? 'page' : undefined}
                 sx={{
                   color: activeSection === section.id ? 'primary.main' : 'text.primary',
                   position: 'relative',

@@ -102,6 +102,15 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
         },
       }}
       onClick={handleExpandClick}
+      onKeyDown={(e) => {
+        if (hasDetails && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          handleExpandClick();
+        }
+      }}
+      role={hasDetails ? 'button' : undefined}
+      tabIndex={hasDetails ? 0 : undefined}
+      aria-expanded={hasDetails ? expanded : undefined}
     >
       <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
         {/* Header Row */}
