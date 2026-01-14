@@ -1,12 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import DownloadIcon from '@mui/icons-material/Download';
 import { track } from '@/utils/analytics';
+import { calculateYearsOfExperience } from '@/utils/experience';
 
 export default function Hero() {
+  // Calculate years of experience dynamically from Jan 2018
+  const yearsOfExperience = useMemo(() => calculateYearsOfExperience(), []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -57,19 +61,7 @@ export default function Hero() {
             py: { xs: 4, md: 0 },
           }}
         >
-          <Typography
-            variant="body1"
-            sx={{
-              color: 'primary.main',
-              fontWeight: 600,
-              mb: 2,
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              fontSize: '0.9rem',
-            }}
-          >
-            Welcome to my portfolio
-          </Typography>
+
 
           <Typography
             variant="h1"
@@ -108,7 +100,7 @@ export default function Hero() {
               mx: { xs: 'auto', md: 0 },
             }}
           >
-            7 years of experience building scalable web applications
+            {yearsOfExperience}+ years delivering end-to-end systems—from architecture to production.
           </Typography>
 
           <Typography
@@ -121,8 +113,7 @@ export default function Hero() {
               lineHeight: 1.8,
             }}
           >
-            Passionate about creating elegant solutions to complex problems, 
-            with expertise in React, TypeScript, Node.js, and cloud technologies.
+            Full-stack engineering with Python, React, PostgreSQL, Redis, and cloud platforms.
           </Typography>
 
           <Box

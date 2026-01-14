@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/components/ThemeRegistry";
+import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Akaash Trivedi | Full Stack Engineer",
-  description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience. Specializing in scalable systems, APIs, cloud architecture, and full-stack development with React, TypeScript, Node.js, Python, and AWS.",
+  title: siteConfig.title,
+  description: siteConfig.description,
   keywords: [
     "Akaash Trivedi",
     "Full Stack Engineer",
@@ -33,35 +34,35 @@ export const metadata: Metadata = {
     "API Development",
     "Cloud Architecture",
   ],
-  authors: [{ name: "Akaash Trivedi", url: "https://www.linkedin.com/in/akaash-trivedi" }],
-  creator: "Akaash Trivedi",
-  publisher: "Akaash Trivedi",
-  metadataBase: new URL("https://akaash-portfolio.vercel.app"),
+  authors: [{ name: siteConfig.author.name, url: siteConfig.social.linkedin }],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.author.name,
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Akaash Trivedi | Full Stack Engineer",
-    description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience specializing in scalable systems, APIs, and cloud architecture.",
-    url: "https://akaash-portfolio.vercel.app",
-    siteName: "Akaash Trivedi Portfolio",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png", // You can add this image later
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Akaash Trivedi - Full Stack Engineer",
+        alt: `${siteConfig.author.name} - Full Stack Engineer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akaash Trivedi | Full Stack Engineer",
-    description: "Sr. Software Engineer at Marvell Technology with 7+ years of experience",
+    title: siteConfig.title,
+    description: siteConfig.description,
     creator: "@akaasht",
-    images: ["/og-image.png"],
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,

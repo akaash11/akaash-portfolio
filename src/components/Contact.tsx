@@ -98,9 +98,9 @@ export default function Contact() {
 
     setSubmitStatus('loading');
 
+    // Track submission without PII (GDPR/CCPA compliant)
     track('contact_submit', {
-      name: formData.name,
-      email: formData.email,
+      timestamp: new Date().toISOString(),
     });
 
     try {

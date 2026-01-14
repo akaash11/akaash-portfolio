@@ -27,33 +27,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
 import { experiences, ExperienceType } from '@/data/experience';
-
-// Experience duration calculation
-const CAREER_START_DATE = new Date(2018, 0, 1); // Jan 1, 2018
-
-function getExperienceDuration(start: Date, end: Date): { years: number; months: number; label: string } {
-  const startYear = start.getFullYear();
-  const startMonth = start.getMonth();
-  const startDay = start.getDate();
-  
-  const endYear = end.getFullYear();
-  const endMonth = end.getMonth();
-  const endDay = end.getDate();
-  
-  // Calculate total months
-  let totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
-  
-  // Adjust if end day is before start day
-  if (endDay < startDay) {
-    totalMonths--;
-  }
-  
-  const years = Math.floor((totalMonths / 12) * 10) / 10; // Floor to 1 decimal
-  const months = totalMonths % 12;
-  const label = `${years}+ years`;
-  
-  return { years, months, label };
-}
+import { CAREER_START_DATE, calculateExperienceDuration } from '@/utils/experience';
 
 const typeConfig = {
   work: {
@@ -382,7 +356,7 @@ export default function Timeline() {
 
   // Calculate experience duration
   const experienceDuration = useMemo(() => {
-    return getExperienceDuration(CAREER_START_DATE, new Date());
+    return calculateExperienceDuration(CAREER_START_DATE, new Date());
   }, []);
 
   // Count by category
@@ -393,7 +367,7 @@ export default function Timeline() {
       result[category]++;
     });
     return result;
-  }, []);
+  }, [experiences]);
 
   // Filter and sort experiences
   const filteredExperiences = useMemo(() => {

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
     // Honeypot check - silently reject bots
     if (body.honeypot) {
-      console.log('Bot detected via honeypot');
+      // Silent rejection - don't log PII
       return NextResponse.json({ ok: true }, { status: 200 });
     }
 
@@ -68,6 +68,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // HTML escape function to prevent XSS
+    const escapeHtml = (text: string): string => {
+      const map: Record<string, string> = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+      };
+      return text.replace(/[&<>"']/g, (m) => map[m]);
+    };
+
     // Send email via Resend API
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -79,21 +91,24 @@ export async function POST(request: NextRequest) {
         from: contactFromEmail,
         to: contactToEmail,
         reply_to: body.email,
-        subject: `Portfolio Contact: ${body.name}`,
+        subject: `Portfolio Contact: ${escapeHtml(body.name)}`,
         text: `Name: ${body.name}\nEmail: ${body.email}\n\nMessage:\n${body.message}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${body.name}</p>
-          <p><strong>Email:</strong> ${body.email}</p>
+          <p><strong>Name:</strong> ${escapeHtml(body.name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
           <p><strong>Message:</strong></p>
-          <p>${body.message.replace(/\n/g, '<br>')}</p>
+          <p>${escapeHtml(body.message).replace(/\n/g, '<br>')}</p>
         `,
       }),
     });
 
     if (!resendResponse.ok) {
       const errorData = await resendResponse.json().catch(() => ({}));
-      console.error('Resend API error:', errorData);
+      // Log error without exposing details to client
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Resend API error:', errorData);
+      }
       return NextResponse.json(
         { ok: false, error: 'Failed to send email' },
         { status: 500 }
@@ -101,7 +116,10 @@ export async function POST(request: NextRequest) {
     }
 
     const resendData = await resendResponse.json();
-    console.log('Email sent successfully:', resendData);
+    // Only log in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Email sent successfully:', resendData.id);
+    }
 
     return NextResponse.json({ ok: true }, { status: 200 });
 

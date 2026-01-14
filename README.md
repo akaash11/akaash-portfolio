@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
 
 ## 🚀 Live Demo
 
-[View Live Site](https://akaash-portfolio.vercel.app)
+[View Live Site](https://akaasht.vercel.app)
 
 ## ✨ Features
 
@@ -29,6 +29,7 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
 │   ├── app/
 │   │   ├── layout.tsx          # Root layout with metadata
 │   │   ├── page.tsx            # Main page
+│   │   ├── sitemap.ts          # Dynamic sitemap generation
 │   │   └── globals.css         # Global styles
 │   ├── components/
 │   │   ├── Navbar.tsx          # Sticky navigation with scrollspy
@@ -38,18 +39,24 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
 │   │   ├── Projects.tsx        # Projects grid
 │   │   ├── ProjectCard.tsx     # Individual project card
 │   │   ├── Contact.tsx         # Contact form
+│   │   ├── Footer.tsx          # Site footer
 │   │   ├── Section.tsx         # Reusable section wrapper
 │   │   └── ThemeRegistry.tsx   # MUI theme provider
+│   ├── config/
+│   │   └── site.ts             # Site configuration (URLs, metadata)
 │   ├── data/
 │   │   ├── experience.ts       # Experience data
 │   │   └── projects.ts         # Projects data
 │   ├── theme/
 │   │   └── theme.ts            # MUI theme configuration
 │   └── utils/
-│       └── analytics.ts        # Analytics utility
+│       ├── analytics.ts        # Analytics utility
+│       └── experience.ts       # Experience calculation helpers
 ├── public/
 │   ├── resume.pdf              # Your resume (add this)
-│   └── og-image.png            # Open Graph image (add this)
+│   ├── og-image.png            # Open Graph image (add this)
+│   ├── robots.txt              # SEO crawler instructions
+│   └── sitemap.xml             # Static sitemap (optional)
 └── .env.example                # Environment variables template
 ```
 
@@ -105,14 +112,25 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
    - Modify strengths/capabilities
    - Update tech stack
 
-4. **Contact Info** (`src/components/Contact.tsx`)
-   - Update social media links
-   - Change email address
-   - Modify location and current role
+4. **Site Configuration** (`src/config/site.ts`) ⭐ **Start Here**
+   - Site URL and metadata
+   - Your name, title, email, location
+   - Social links (LinkedIn, GitHub, Twitter)
+   - OG image path
+   - **Why centralize?** Single source of truth for all site-wide settings. Changes here update metadata, footer, contact section, and SEO automatically.
 
 5. **Resume**
    - Add your `resume.pdf` to the `public/` directory
-   - Update the link in `Hero.tsx` if needed
+   - The link in `Hero.tsx` already points to `/resume.pdf`
+
+All site-wide settings are centralized in `src/config/site.ts`:
+- Site URL (from `NEXT_PUBLIC_SITE_URL` env var)
+- Site name and description
+- Author information
+- Social links
+- OG image path
+
+**Why centralize?** This ensures consistency across metadata, sitemap, and all components.
 
 ### Customize Theme
 
@@ -161,25 +179,26 @@ The site includes an analytics utility ready for integration:
 
 Update `src/utils/analytics.ts` to integrate with your chosen service.
 
-## 📧 Contact Form Integration
+## 📧 Contact Form
 
-The contact form is currently set up with client-side validation and a simulated submission. To connect it to a real backend:
+The contact form is integrated with [Resend](https://resend.com) for email delivery. To set it up:
 
-### Option 1: Formspree (Easiest)
-```typescript
-// In Contact.tsx handleSubmit
-const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ name, email, message }),
-});
-```
+1. Sign up for a free Resend account at [resend.com](https://resend.com)
+2. Get your API key from the dashboard
+3. Add environment variables to `.env.local`:
+   ```bash
+   RESEND_API_KEY=your_api_key
+   CONTACT_TO_EMAIL=your_email@gmail.com
+   CONTACT_FROM_EMAIL=onboarding@resend.dev  # or your verified domain
+   ```
+4. For production deployment (Vercel), add these same env vars in your project settings
 
-### Option 2: EmailJS
-Install EmailJS and configure in `Contact.tsx`
-
-### Option 3: Custom API Route
-Create `/app/api/contact/route.ts` with your email sending logic
+**Features:**
+- Server-side validation
+- Honeypot spam protection
+- HTML sanitization for security
+- Real-time form validation
+- Success/error notifications
 
 ## 🎨 Design Decisions
 
@@ -212,7 +231,6 @@ If you find any bugs or have suggestions, feel free to open an issue or submit a
 - **Email**: akaashtrivedi2@gmail.com
 - **LinkedIn**: [linkedin.com/in/akaash-trivedi](https://www.linkedin.com/in/akaash-trivedi)
 - **GitHub**: [github.com/akaash11](https://github.com/akaash11)
-- **Twitter**: [@akaasht](https://twitter.com/akaasht)
 
 ---
 

@@ -8,23 +8,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SpeedIcon from '@mui/icons-material/Speed';
 import ArchitectureIcon from '@mui/icons-material/Architecture';
-
-// Calculate years of experience
-const CAREER_START_DATE = new Date(2018, 0, 1); // Jan 1, 2018
-
-function calculateYearsOfExperience(): number {
-  const now = new Date();
-  const startYear = CAREER_START_DATE.getFullYear();
-  const startMonth = CAREER_START_DATE.getMonth();
-  
-  const nowYear = now.getFullYear();
-  const nowMonth = now.getMonth();
-  
-  const totalMonths = (nowYear - startYear) * 12 + (nowMonth - startMonth);
-  const years = Math.floor((totalMonths / 12) * 10) / 10; // Floor to 1 decimal
-  
-  return years;
-}
+import { calculateYearsOfExperience } from '@/utils/experience';
 
 const techStack = [
   'Python',
