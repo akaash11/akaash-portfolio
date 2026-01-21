@@ -55,7 +55,7 @@ Create a `.env.local` file in the root directory with the following variables:
 
 ```env
 # Site Configuration
-NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
+NEXT_PUBLIC_SITE_URL=https://akaash.app
 NEXT_PUBLIC_SITE_NAME=Akaash Trivedi - Portfolio
 NEXT_PUBLIC_SITE_DESCRIPTION=Full Stack Engineer with 7+ years of experience
 

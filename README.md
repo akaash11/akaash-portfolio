@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ma
 
 ## 🚀 Live Demo
 
-[View Live Site](https://akaasht.vercel.app)
+[View Live Site](https://akaash.app)
 
 ## ✨ Features
 
@@ -156,7 +156,7 @@ Edit `src/theme/theme.ts` to customize:
    RESEND_API_KEY=your_resend_api_key
    CONTACT_TO_EMAIL=akaashtrivedi2@gmail.com
    CONTACT_FROM_EMAIL=onboarding@resend.dev
-   NEXT_PUBLIC_SITE_URL=https://akaasht.vercel.app
+   NEXT_PUBLIC_SITE_URL=https://akaash.app
    ```
 
 ### Deploy to Vercel (Recommended)

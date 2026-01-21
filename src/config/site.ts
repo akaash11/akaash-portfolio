@@ -15,7 +15,7 @@ const yearsOfExperience = calculateYearsOfExperience();
 
 export const siteConfig = {
   // Base URL - from env var or fallback to production URL
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://akaasht.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://akaash.app',
   
   // Site metadata
   name: 'Akaash Trivedi Portfolio',

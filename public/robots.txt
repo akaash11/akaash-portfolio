@@ -4,4 +4,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://akaasht.vercel.app/sitemap.xml
+Sitemap: https://akaash.app/sitemap.xml
