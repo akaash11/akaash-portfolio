@@ -84,11 +84,12 @@ export default function Hero() {
           </Typography>
 
           <Typography
-            variant="h5"
+            variant="body1"
             sx={{
               mb: 1,
               color: 'text.secondary',
               fontWeight: 400,
+              fontSize: '1.125rem',
               maxWidth: '700px',
               mx: { xs: 'auto', md: 0 },
             }}

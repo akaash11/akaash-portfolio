@@ -98,7 +98,8 @@ export default function About() {
           <Box>
             {/* Headline */}
             <Typography
-              variant="h4"
+              variant="h2"
+              component="h2"
               sx={{
                 mb: 1.5,
                 fontWeight: 700,
@@ -286,7 +287,8 @@ export default function About() {
                       {/* Content */}
                       <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Typography
-                          variant="subtitle1"
+                          variant="h3"
+                          component="h3"
                           sx={{
                             fontWeight: 600,
                             mb: 0.25,

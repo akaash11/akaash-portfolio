@@ -156,7 +156,7 @@ export default function Contact() {
         {/* Left Column - Contact Form */}
         <Box>
           <Box sx={cardSx}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 700, mb: 0.5 }}>
+            <Typography variant="h3" component="h3" gutterBottom sx={{ fontWeight: 700, mb: 0.5, fontSize: '1.25rem' }}>
               Send a Message
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -256,7 +256,7 @@ export default function Contact() {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           {/* Connect Card */}
           <Box sx={cardSx}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 700, mb: 0.5 }}>
+            <Typography variant="h3" component="h3" gutterBottom sx={{ fontWeight: 700, mb: 0.5, fontSize: '1.25rem' }}>
               Connect
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
