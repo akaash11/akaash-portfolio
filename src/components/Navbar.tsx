@@ -115,7 +115,7 @@ export default function Navbar() {
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-        <IconButton onClick={handleDrawerToggle} color="inherit">
+        <IconButton onClick={handleDrawerToggle} color="inherit" aria-label="close navigation menu">
           <CloseIcon />
         </IconButton>
       </Box>

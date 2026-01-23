@@ -271,6 +271,7 @@ export default function Contact() {
               <ButtonBase
                 component="a"
                 href="mailto:akaashtrivedi2@gmail.com"
+                aria-label="Send email to akaashtrivedi2@gmail.com"
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -314,6 +315,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/akaash-trivedi"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit LinkedIn profile"
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -357,6 +359,7 @@ export default function Contact() {
                 href="https://github.com/akaash11"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit GitHub profile"
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -400,6 +403,7 @@ export default function Contact() {
                 href="https://twitter.com/akaasht"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit Twitter profile"
                 sx={{
                   display: 'flex',
                   alignItems: 'center',

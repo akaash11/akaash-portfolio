@@ -164,6 +164,7 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
+                  aria-label={`Visit ${experience.organization} website`}
                   sx={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -245,6 +246,7 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
                 handleExpandClick();
               }}
               size="small"
+              aria-label={expanded ? 'collapse details' : 'expand details'}
               sx={{
                 transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
                 transition: 'transform 0.2s ease',

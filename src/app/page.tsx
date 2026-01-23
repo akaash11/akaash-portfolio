@@ -1,13 +1,26 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Timeline from '@/components/Timeline';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import { Box } from '@mui/material';
+
+// Lazy load components below the fold for better performance
+const About = dynamic(() => import('@/components/About'), {
+  loading: () => null,
+});
+const Timeline = dynamic(() => import('@/components/Timeline'), {
+  loading: () => null,
+});
+const Projects = dynamic(() => import('@/components/Projects'), {
+  loading: () => null,
+});
+const Contact = dynamic(() => import('@/components/Contact'), {
+  loading: () => null,
+});
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => null,
+});
 
 /**
  * Homepage - Full scroll experience
