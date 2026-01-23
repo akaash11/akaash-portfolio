@@ -6,10 +6,31 @@ import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-// import Play from '@/components/Play'; // Reserved for future use
 import Section from '@/components/Section';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
+/**
+ * Homepage - Full scroll experience
+ * 
+ * HYBRID APPROACH for best UX + SEO:
+ * 
+ * This page: Full scroll experience with all sections (Hero → About → Experience → Projects → Contact)
+ * - Great UX: Immersive storytelling, natural flow
+ * - Users can scroll through everything in one go
+ * 
+ * Separate routes also exist: /about, /experience, /projects, /contact
+ * - Great SEO: Each page can rank independently
+ * - Direct access for search engines and shared links
+ * 
+ * Navbar behavior:
+ * - On homepage: Smooth scroll to sections
+ * - On other pages: Route navigation
+ * 
+ * Benefits:
+ * ✅ Best user experience (scroll storytelling)
+ * ✅ Best SEO (separate indexable pages)
+ * ✅ Flexibility (works both ways)
+ */
 export default function Home() {
   return (
     <>
@@ -34,11 +55,6 @@ export default function Home() {
         <Section id="projects" title="Projects" bgcolor="background.paper" compactPadding>
           <Projects />
         </Section>
-
-        {/* Play Section - Reserved for future use */}
-        {/* <Section id="play" title="Play">
-          <Play />
-        </Section> */}
 
         {/* Contact Section */}
         <Section id="contact" title="Contact" compactPadding>

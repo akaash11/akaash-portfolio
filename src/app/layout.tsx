@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/components/ThemeRegistry";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,21 +20,46 @@ export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: [
+    // Personal Brand
     "Akaash Trivedi",
+    "Akaash Trivedi Portfolio",
+    // Roles & Titles
     "Full Stack Engineer",
     "Senior Software Engineer",
     "Software Developer",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "AWS",
-    "Marvell Technology",
-    "Santa Clara University",
-    "HCI Research",
-    "System Design",
-    "API Development",
+    "Backend Engineer",
+    "Frontend Developer",
+    // Core Technologies
+    "React Developer",
+    "TypeScript Developer",
+    "Python Developer",
+    "Node.js Developer",
+    "Next.js Portfolio",
+    // Specializations
+    "Distributed Systems",
     "Cloud Architecture",
+    "API Development",
+    "System Design",
+    "Microservices",
+    "PostgreSQL",
+    "Redis",
+    "AWS",
+    // Location-based
+    "Software Engineer New York",
+    "Full Stack Engineer NYC",
+    // Companies & Education
+    "Marvell Technology",
+    "Qualys",
+    "Santa Clara University",
+    // Research & Achievements
+    "HCI Research",
+    "NSF SBIR",
+    // Technical Skills
+    "REST API",
+    "GraphQL",
+    "Docker",
+    "Kubernetes",
+    "CI/CD",
   ],
   authors: [{ name: siteConfig.author.name, url: siteConfig.social.linkedin }],
   creator: siteConfig.author.name,
@@ -41,6 +68,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  category: "technology",
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -54,8 +82,13 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: `${siteConfig.author.name} - Full Stack Engineer`,
+        type: "image/png",
       },
     ],
+  },
+  other: {
+    "article:author": siteConfig.author.name,
+    "profile:username": "akaash11",
   },
   twitter: {
     card: "summary_large_image",
@@ -126,6 +159,8 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeRegistry>{children}</ThemeRegistry>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

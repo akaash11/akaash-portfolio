@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-  NOTE: This is a static sitemap. For dynamic generation, consider creating
-  src/app/sitemap.ts using Next.js's sitemap generation API.
-  The site URL is configured in src/config/site.ts
+  NOTE: This is a fallback static sitemap.
+  The dynamic sitemap is generated from src/app/sitemap.ts
+  which automatically updates on each build.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://akaash.app</loc>
-    <lastmod>2026-01-20</lastmod>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://akaash.app/#about</loc>
-    <lastmod>2026-01-20</lastmod>
+    <loc>https://akaash.app/about</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://akaash.app/#experience</loc>
-    <lastmod>2026-01-20</lastmod>
+    <loc>https://akaash.app/experience</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://akaash.app/#projects</loc>
-    <lastmod>2026-01-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://akaash.app/projects</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://akaash.app/#contact</loc>
-    <lastmod>2026-01-20</lastmod>
+    <loc>https://akaash.app/contact</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>

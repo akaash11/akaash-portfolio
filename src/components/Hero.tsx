@@ -3,8 +3,6 @@
 import React, { useMemo } from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import DownloadIcon from '@mui/icons-material/Download';
-import { track } from '@/utils/analytics';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 export default function Hero() {
@@ -21,11 +19,6 @@ export default function Hero() {
         behavior: 'smooth',
       });
     }
-  };
-
-  const handleResumeClick = () => {
-    track('resume_click', { location: 'hero' });
-    window.open('/resume.pdf', '_blank');
   };
 
   return (
@@ -158,25 +151,6 @@ export default function Hero() {
               }}
             >
               Get in Touch
-            </Button>
-
-            <Button
-              variant="outlined"
-              size="large"
-              startIcon={<DownloadIcon />}
-              onClick={handleResumeClick}
-              sx={{
-                borderColor: 'secondary.main',
-                color: 'secondary.main',
-                '&:hover': {
-                  borderColor: 'secondary.light',
-                  bgcolor: 'rgba(167, 139, 250, 0.1)',
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Resume
             </Button>
           </Box>
         </Box>

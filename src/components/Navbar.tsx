@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import {
   AppBar,
   Toolbar,
@@ -18,27 +20,40 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 const sections = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-  // { id: 'play', label: 'Play' }, // Reserved for future use
-  { id: 'contact', label: 'Contact' },
+  { path: '/', id: 'home', label: 'Home' },
+  { path: '/about', id: 'about', label: 'About' },
+  { path: '/experience', id: 'experience', label: 'Experience' },
+  { path: '/projects', id: 'projects', label: 'Projects' },
+  { path: '/contact', id: 'contact', label: 'Contact' },
 ];
 
+/**
+ * Smart Navbar Component
+ * 
+ * HYBRID NAVIGATION:
+ * - On homepage (/): Smooth scroll to sections
+ * - On other pages: Route-based navigation using Next.js Link
+ * 
+ * This provides the best UX (scroll on home) while maintaining 
+ * SEO benefits (separate routes for search engines).
+ */
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
 
   useEffect(() => {
+    if (!isHomepage) return;
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height + buffer
+      const scrollPosition = window.scrollY + 100;
       
       // Handle scroll trigger for navbar background
       setScrolled(window.scrollY > 50);
 
-      // Handle active section
+      // Handle active section on homepage
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i].id);
         if (section && section.offsetTop <= scrollPosition) {
@@ -49,9 +64,9 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once on mount
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomepage]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -60,7 +75,7 @@ export default function Navbar() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 65; // Navbar height + padding
+      const offset = 65;
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
@@ -68,6 +83,26 @@ export default function Navbar() {
       });
     }
     setMobileOpen(false);
+  };
+
+  const handleNavClick = (section: typeof sections[0], e: React.MouseEvent) => {
+    if (isHomepage) {
+      // On homepage: scroll to section
+      e.preventDefault();
+      scrollToSection(section.id);
+    } else {
+      // On other pages: navigate to route
+      // Let Next.js Link handle it naturally
+      setMobileOpen(false);
+    }
+  };
+
+  const isActive = (section: typeof sections[0]) => {
+    if (isHomepage) {
+      return activeSection === section.id;
+    } else {
+      return pathname === section.path;
+    }
   };
 
   const drawer = (
@@ -88,8 +123,10 @@ export default function Navbar() {
         {sections.map((section) => (
           <ListItem key={section.id} disablePadding>
             <ListItemButton
-              onClick={() => scrollToSection(section.id)}
-              selected={activeSection === section.id}
+              component={isHomepage ? 'button' : Link}
+              href={isHomepage ? undefined : section.path}
+              onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
+              selected={isActive(section)}
               sx={{
                 borderRadius: 1,
                 mb: 0.5,
@@ -121,28 +158,31 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              fontWeight: 700,
-              cursor: 'pointer',
-              '&:hover': { color: 'primary.main' },
-            }}
-            onClick={() => scrollToSection('home')}
-          >
-            AT
-          </Typography>
+          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                fontWeight: 700,
+                cursor: 'pointer',
+                '&:hover': { color: 'primary.main' },
+              }}
+            >
+              AT
+            </Typography>
+          </Link>
 
           {/* Desktop Navigation */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }} component="nav" aria-label="Main navigation">
             {sections.map((section) => (
               <Button
                 key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                aria-current={activeSection === section.id ? 'page' : undefined}
+                component={isHomepage ? 'button' : Link}
+                href={isHomepage ? undefined : section.path}
+                onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
+                aria-current={isActive(section) ? 'page' : undefined}
                 sx={{
-                  color: activeSection === section.id ? 'primary.main' : 'text.primary',
+                  color: isActive(section) ? 'primary.main' : 'text.primary',
                   position: 'relative',
                   '&::after': {
                     content: '""',
@@ -150,7 +190,7 @@ export default function Navbar() {
                     bottom: 0,
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: activeSection === section.id ? '80%' : '0%',
+                    width: isActive(section) ? '80%' : '0%',
                     height: '2px',
                     bgcolor: 'primary.main',
                     transition: 'width 0.3s ease',
@@ -184,7 +224,7 @@ export default function Navbar() {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better mobile performance
+          keepMounted: true,
         }}
         sx={{
           display: { xs: 'block', md: 'none' },

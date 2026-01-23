@@ -38,8 +38,8 @@ export const siteConfig = {
     twitter: 'https://twitter.com/akaasht',
   },
   
-  // OG Image
-  ogImage: '/og-image.png',
+  // OG Image (optimized version)
+  ogImage: '/og-image-low.png',
 } as const;
 
 /**
