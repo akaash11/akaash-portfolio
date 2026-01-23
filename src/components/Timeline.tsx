@@ -112,7 +112,7 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
       tabIndex={hasDetails ? 0 : undefined}
       aria-expanded={hasDetails ? expanded : undefined}
     >
-      <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
+      <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
         {/* Header Row */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
           <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -168,11 +168,20 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
                   sx={{
                     display: 'inline-flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     color: 'text.secondary',
-                    '&:hover': { color: config.color },
+                    minWidth: 44, // WCAG compliant touch target
+                    minHeight: 44,
+                    p: 1.5,
+                    ml: -1.5, // Offset padding to maintain visual alignment
+                    borderRadius: 1,
+                    '&:hover': { 
+                      color: config.color,
+                      bgcolor: 'action.hover',
+                    },
                   }}
                 >
-                  <LaunchIcon sx={{ fontSize: 14 }} />
+                  <LaunchIcon sx={{ fontSize: 16 }} />
                 </MuiLink>
               )}
             </Box>
@@ -659,7 +668,7 @@ export default function Timeline() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: 3, // Increased spacing for better touch targets (24px)
           }}
         >
           {filteredExperiences.map((exp) => (
