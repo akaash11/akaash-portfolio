@@ -1,11 +1,14 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, useTheme } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 export default function Hero() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  
   // Calculate years of experience dynamically from Jan 2018
   const yearsOfExperience = useMemo(() => calculateYearsOfExperience(), []);
 
@@ -29,7 +32,8 @@ export default function Hero() {
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: `
+        bgcolor: 'background.default',
+        background: isDark ? `
           linear-gradient(135deg, 
             rgba(96, 165, 250, 0.1) 0%, 
             rgba(167, 139, 250, 0.1) 50%, 
@@ -44,6 +48,21 @@ export default function Hero() {
             transparent 50%
           ),
           #0a0a0a
+        ` : `
+          linear-gradient(135deg, 
+            rgba(37, 99, 235, 0.08) 0%, 
+            rgba(124, 58, 237, 0.08) 50%, 
+            rgba(59, 130, 246, 0.08) 100%
+          ),
+          radial-gradient(ellipse at top left, 
+            rgba(37, 99, 235, 0.1) 0%, 
+            transparent 50%
+          ),
+          radial-gradient(ellipse at bottom right, 
+            rgba(124, 58, 237, 0.1) 0%, 
+            transparent 50%
+          ),
+          #ffffff
         `,
       }}
     >
@@ -61,7 +80,9 @@ export default function Hero() {
             component="h1"
             sx={{
               mb: 2,
-              background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%)',
+              background: isDark 
+                ? 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%)'
+                : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -123,12 +144,20 @@ export default function Hero() {
               size="large"
               endIcon={<ArrowForwardIcon />}
               onClick={() => scrollToSection('projects')}
+              aria-label="View my projects portfolio"
               sx={{
-                background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
+                background: isDark 
+                  ? 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
+                  : 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)',
+                color: '#ffffff',
                 '&:hover': {
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                  background: isDark 
+                    ? 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'
+                    : 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
                   transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 24px rgba(96, 165, 250, 0.4)',
+                  boxShadow: isDark 
+                    ? '0 8px 24px rgba(96, 165, 250, 0.4)'
+                    : '0 8px 24px rgba(37, 99, 235, 0.4)',
                 },
                 transition: 'all 0.3s ease',
               }}
@@ -140,12 +169,15 @@ export default function Hero() {
               variant="outlined"
               size="large"
               onClick={() => scrollToSection('contact')}
+              aria-label="Navigate to contact section"
               sx={{
                 borderColor: 'primary.main',
                 color: 'primary.main',
                 '&:hover': {
                   borderColor: 'primary.light',
-                  bgcolor: 'rgba(96, 165, 250, 0.1)',
+                  bgcolor: isDark 
+                    ? 'rgba(96, 165, 250, 0.1)'
+                    : 'rgba(37, 99, 235, 0.1)',
                   transform: 'translateY(-2px)',
                 },
                 transition: 'all 0.3s ease',
@@ -166,7 +198,9 @@ export default function Hero() {
           width: '300px',
           height: '300px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%)',
+          background: isDark 
+            ? 'radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%)',
           filter: 'blur(60px)',
           pointerEvents: 'none',
           display: { xs: 'none', md: 'block' },
@@ -180,7 +214,9 @@ export default function Hero() {
           width: '250px',
           height: '250px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%)',
+          background: isDark 
+            ? 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%)',
           filter: 'blur(50px)',
           pointerEvents: 'none',
           display: { xs: 'none', md: 'block' },

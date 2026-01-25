@@ -40,7 +40,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)' }}>
+      <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)', mt: 4 }}>
         <Section id="projects" title="Projects" bgcolor="background.paper" compactPadding isMainSection>
           <Projects />
         </Section>

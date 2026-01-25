@@ -1,28 +1,29 @@
 'use client';
 
-import { createTheme } from '@mui/material/styles';
+import { createTheme, PaletteMode } from '@mui/material/styles';
 
-const theme = createTheme({
+export const getTheme = (mode: PaletteMode) => createTheme({
   palette: {
-    mode: 'dark',
+    mode,
     primary: {
-      main: '#60a5fa', // blue-400
-      light: '#93c5fd',
-      dark: '#3b82f6',
+      main: mode === 'dark' ? '#60a5fa' : '#2563eb', // blue-400 / blue-600
+      light: mode === 'dark' ? '#93c5fd' : '#60a5fa',
+      dark: mode === 'dark' ? '#3b82f6' : '#1e40af',
     },
     secondary: {
-      main: '#a78bfa', // purple-400
-      light: '#c4b5fd',
-      dark: '#8b5cf6',
+      main: mode === 'dark' ? '#a78bfa' : '#7c3aed', // purple-400 / purple-600
+      light: mode === 'dark' ? '#c4b5fd' : '#a78bfa',
+      dark: mode === 'dark' ? '#8b5cf6' : '#5b21b6',
     },
     background: {
-      default: '#0a0a0a',
-      paper: '#1a1a1a',
+      default: mode === 'dark' ? '#0a0a0a' : '#ffffff',
+      paper: mode === 'dark' ? '#1a1a1a' : '#f9fafb',
     },
     text: {
-      primary: '#f5f5f5',
-      secondary: '#a3a3a3',
+      primary: mode === 'dark' ? '#f5f5f5' : '#111827',
+      secondary: mode === 'dark' ? '#a3a3a3' : '#6b7280',
     },
+    divider: mode === 'dark' ? '#2a2a2a' : '#e5e7eb',
   },
   typography: {
     fontFamily: 'var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -98,4 +99,6 @@ const theme = createTheme({
   },
 });
 
+// Default to dark mode
+const theme = getTheme('dark');
 export default theme;

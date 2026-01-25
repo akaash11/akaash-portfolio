@@ -64,9 +64,11 @@ interface TimelineItemProps {
   experience: typeof experiences[0];
   expanded: boolean;
   onToggle: () => void;
+  isFirstItem?: boolean;
+  isStandalone?: boolean;
 }
 
-function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
+function TimelineItem({ experience, expanded, onToggle, isFirstItem = false, isStandalone = false }: TimelineItemProps) {
   const config = typeConfig[experience.type];
   const Icon = config.icon;
   const theme = useTheme();
@@ -134,9 +136,9 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
               </Box>
               <Typography
                 variant="h6"
-                component="h2"
+                component={isStandalone && isFirstItem ? 'h1' : 'h2'}
                 sx={{
-                  fontSize: '1.125rem',
+                  fontSize: isStandalone && isFirstItem ? '1.5rem' : '1.125rem',
                   fontWeight: 600,
                   color: 'text.primary',
                   lineHeight: 1.3,
@@ -367,7 +369,11 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
   );
 }
 
-export default function Timeline() {
+interface TimelineProps {
+  isStandalone?: boolean; // true when on /experience page, false on homepage
+}
+
+export default function Timeline({ isStandalone = false }: TimelineProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [selectedTab, setSelectedTab] = useState<Category>('experience');
@@ -671,7 +677,7 @@ export default function Timeline() {
             gap: 3, // Increased spacing for better touch targets (24px)
           }}
         >
-          {filteredExperiences.map((exp) => (
+          {filteredExperiences.map((exp, index) => (
             <Box
               key={exp.id}
               sx={{
@@ -698,6 +704,8 @@ export default function Timeline() {
                 experience={exp}
                 expanded={expandedIds.has(exp.id)}
                 onToggle={() => toggleExpanded(exp.id)}
+                isFirstItem={index === 0}
+                isStandalone={isStandalone}
               />
             </Box>
           ))}

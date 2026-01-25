@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -15,9 +15,13 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Tooltip,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { ThemeModeContext } from './ThemeRegistry';
 
 const sections = [
   { path: '/', id: 'home', label: 'Home' },
@@ -43,6 +47,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === '/';
+  const { mode, toggleTheme } = useContext(ThemeModeContext);
 
   useEffect(() => {
     if (!isHomepage) return;
@@ -127,6 +132,8 @@ export default function Navbar() {
               href={isHomepage ? undefined : section.path}
               onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
               selected={isActive(section)}
+              aria-label={`Navigate to ${section.label}`}
+              aria-current={isActive(section) ? 'page' : undefined}
               sx={{
                 borderRadius: 1,
                 mb: 0.5,
@@ -158,13 +165,14 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
             <Typography
               variant="h6"
               component="div"
               sx={{
                 fontWeight: 700,
                 cursor: 'pointer',
+                color: 'text.primary',
                 '&:hover': { color: 'primary.main' },
               }}
             >
@@ -173,7 +181,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }} component="nav" aria-label="Main navigation">
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }} component="nav" aria-label="Main navigation">
             {sections.map((section) => (
               <Button
                 key={section.id}
@@ -181,6 +189,7 @@ export default function Navbar() {
                 href={isHomepage ? undefined : section.path}
                 onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
                 aria-current={isActive(section) ? 'page' : undefined}
+                aria-label={`Navigate to ${section.label}`}
                 sx={{
                   color: isActive(section) ? 'primary.main' : 'text.primary',
                   position: 'relative',
@@ -203,18 +212,71 @@ export default function Navbar() {
                 {section.label}
               </Button>
             ))}
+            
+            {/* Theme Toggle Button - Desktop */}
+            <Tooltip title={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+              <IconButton
+                onClick={toggleTheme}
+                color="inherit"
+                aria-label={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                role="button"
+                tabIndex={0}
+                sx={{
+                  ml: 1,
+                  color: 'text.primary',
+                  '&:hover': {
+                    color: 'primary.main',
+                    bgcolor: 'action.hover',
+                  },
+                  '&:focus-visible': {
+                    outline: '2px solid',
+                    outlineColor: 'primary.main',
+                    outlineOffset: '2px',
+                  },
+                }}
+              >
+                {mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
+            </Tooltip>
           </Box>
 
-          {/* Mobile Menu Button */}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerToggle}
-            sx={{ display: { md: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
+          {/* Mobile Actions */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1, alignItems: 'center' }}>
+            {/* Theme Toggle Button - Mobile */}
+            <Tooltip title={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+              <IconButton
+                onClick={toggleTheme}
+                color="inherit"
+                aria-label={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                role="button"
+                tabIndex={0}
+                sx={{
+                  color: 'text.primary',
+                  '&:hover': {
+                    color: 'primary.main',
+                    bgcolor: 'action.hover',
+                  },
+                  '&:focus-visible': {
+                    outline: '2px solid',
+                    outlineColor: 'primary.main',
+                    outlineOffset: '2px',
+                  },
+                }}
+              >
+                {mode === 'dark' ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+              </IconButton>
+            </Tooltip>
+            
+            {/* Mobile Menu Button */}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
 

@@ -36,9 +36,9 @@ export default function ExperiencePage() {
   return (
     <>
       <Navbar />
-      <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)' }}>
-        <Section id="experience" title="Experience" isMainSection>
-          <Timeline />
+      <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)', mt: 4 }}>
+        <Section id="experience">
+          <Timeline isStandalone />
         </Section>
       </Box>
       <Footer />

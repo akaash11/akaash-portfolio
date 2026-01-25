@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { Box, Typography, Chip, Stack, Divider, Tooltip } from '@mui/material';
+import { Box, Typography, Chip, Stack, Divider, Tooltip, useTheme } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import CloudIcon from '@mui/icons-material/Cloud';
 import PsychologyIcon from '@mui/icons-material/Psychology';
@@ -76,6 +76,8 @@ interface AboutProps {
 }
 
 export default function About({ isStandalone = false }: AboutProps) {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
   const yearsOfExperience = useMemo(() => calculateYearsOfExperience(), []);
   const [showAllChips, setShowAllChips] = useState(false);
   
@@ -174,11 +176,11 @@ export default function About({ isStandalone = false }: AboutProps) {
                     label={tech}
                     size="small"
                     sx={{
-                      bgcolor: 'rgba(96, 165, 250, 0.1)',
+                      bgcolor: isDark ? 'rgba(96, 165, 250, 0.1)' : 'rgba(37, 99, 235, 0.1)',
                       color: 'primary.main',
                       fontSize: '0.75rem',
                       height: 22,
-                      border: '1px solid rgba(96, 165, 250, 0.3)',
+                      border: isDark ? '1px solid rgba(96, 165, 250, 0.3)' : '1px solid rgba(37, 99, 235, 0.3)',
                       '& .MuiChip-label': { px: 1.25 },
                     }}
                   />
@@ -269,7 +271,7 @@ export default function About({ isStandalone = false }: AboutProps) {
                         transition: 'all 0.2s ease',
                         cursor: 'help',
                         '&:hover': {
-                          bgcolor: 'rgba(96, 165, 250, 0.05)',
+                          bgcolor: isDark ? 'rgba(96, 165, 250, 0.05)' : 'rgba(37, 99, 235, 0.05)',
                         },
                       }}
                     >
