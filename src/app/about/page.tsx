@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: 'profile',
   },
   alternates: {
-    canonical: '/about',
+    canonical: `${siteConfig.url}/about`,
   },
 };
 

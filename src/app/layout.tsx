@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   publisher: siteConfig.author.name,
   metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
   },
   category: "technology",
   openGraph: {
