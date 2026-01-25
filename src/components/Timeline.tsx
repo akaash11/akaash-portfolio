@@ -134,7 +134,7 @@ function TimelineItem({ experience, expanded, onToggle }: TimelineItemProps) {
               </Box>
               <Typography
                 variant="h6"
-                component="h3"
+                component="h2"
                 sx={{
                   fontSize: '1.125rem',
                   fontWeight: 600,

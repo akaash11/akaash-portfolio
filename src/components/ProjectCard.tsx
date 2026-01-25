@@ -111,7 +111,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Title */}
         <Typography
           variant="h5"
-          component="h3"
+          component="h2"
           sx={{
             mb: 0.5,
             fontWeight: 700,
@@ -125,7 +125,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Subtitle */}
         <Typography
-          variant="subtitle2"
+          variant="body2"
           sx={{
             mb: 1,
             color: 'text.secondary',
@@ -215,6 +215,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleLinkClick(primaryType)}
+              aria-label={
+                project.liveLink
+                  ? `View live demo of ${project.title}`
+                  : `View ${project.title} on Devpost`
+              }
               sx={{
                 textTransform: 'none',
                 fontWeight: 600,
@@ -233,6 +238,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleLinkClick('github')}
+              aria-label={`View ${project.title} source code on GitHub`}
               sx={{
                 textTransform: 'none',
                 fontWeight: 600,

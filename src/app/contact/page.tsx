@@ -36,7 +36,7 @@ export default function ContactPage() {
     <>
       <Navbar />
       <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)' }}>
-        <Section id="contact" title="Contact" compactPadding>
+        <Section id="contact" title="Contact" compactPadding isMainSection>
           <Contact />
         </Section>
       </Box>

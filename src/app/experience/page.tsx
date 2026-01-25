@@ -37,7 +37,7 @@ export default function ExperiencePage() {
     <>
       <Navbar />
       <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)' }}>
-        <Section id="experience">
+        <Section id="experience" title="Experience" isMainSection>
           <Timeline />
         </Section>
       </Box>

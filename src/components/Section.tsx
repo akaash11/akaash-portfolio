@@ -10,9 +10,18 @@ interface SectionProps {
   bgcolor?: string;
   noPadding?: boolean;
   compactPadding?: boolean;
+  isMainSection?: boolean; // New prop to control h1 vs h2
 }
 
-export default function Section({ id, title, children, bgcolor, noPadding = false, compactPadding = false }: SectionProps) {
+export default function Section({ 
+  id, 
+  title, 
+  children, 
+  bgcolor, 
+  noPadding = false, 
+  compactPadding = false,
+  isMainSection = false // Default to h2 for homepage sections
+}: SectionProps) {
   return (
     <Box
       id={id}
@@ -27,12 +36,13 @@ export default function Section({ id, title, children, bgcolor, noPadding = fals
       <Container maxWidth="lg">
         {title && (
           <Typography
-            variant="h2"
-            component="h2"
+            variant={isMainSection ? 'h1' : 'h2'}
+            component={isMainSection ? 'h1' : 'h2'}
             sx={{
               mb: 6,
               textAlign: 'center',
               fontWeight: 700,
+              fontSize: isMainSection ? { xs: '2rem', md: '2.5rem' } : undefined,
               position: 'relative',
               '&::after': {
                 content: '""',

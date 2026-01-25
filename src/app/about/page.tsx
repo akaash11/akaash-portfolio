@@ -38,7 +38,7 @@ export default function AboutPage() {
       <Navbar />
       <Box component="main" sx={{ minHeight: 'calc(100vh - 200px)' }}>
         <Section id="about" bgcolor="background.paper">
-          <About />
+          <About isStandalone />
         </Section>
       </Box>
       <Footer />

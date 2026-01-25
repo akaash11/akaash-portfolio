@@ -71,7 +71,11 @@ const strengths = [
 
 const MAX_VISIBLE_CHIPS = 7;
 
-export default function About() {
+interface AboutProps {
+  isStandalone?: boolean; // true when on /about page, false on homepage
+}
+
+export default function About({ isStandalone = false }: AboutProps) {
   const yearsOfExperience = useMemo(() => calculateYearsOfExperience(), []);
   const [showAllChips, setShowAllChips] = useState(false);
   
@@ -98,12 +102,12 @@ export default function About() {
           <Box>
             {/* Headline */}
             <Typography
-              variant="h2"
-              component="h2"
+              variant={isStandalone ? 'h2' : 'h3'}
+              component={isStandalone ? 'h1' : 'h2'}
               sx={{
                 mb: 1.5,
                 fontWeight: 700,
-                fontSize: { xs: '1.5rem', md: '1.75rem' },
+                fontSize: isStandalone ? { xs: '2rem', md: '2.5rem' } : { xs: '1.5rem', md: '1.75rem' },
               }}
             >
               About Me
@@ -210,7 +214,8 @@ export default function About() {
           <Box>
             {/* Headline */}
             <Typography
-              variant="h4"
+              variant={isStandalone ? 'h3' : 'h4'}
+              component={isStandalone ? 'h2' : 'h3'}
               sx={{
                 mb: 1.5,
                 fontWeight: 700,
@@ -287,8 +292,8 @@ export default function About() {
                       {/* Content */}
                       <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Typography
-                          variant="h3"
-                          component="h3"
+                          variant="body1"
+                          component="div"
                           sx={{
                             fontWeight: 600,
                             mb: 0.25,
