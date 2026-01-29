@@ -62,18 +62,6 @@ export default function Footer() {
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <IconButton
             component="a"
-            href="mailto:akaashtrivedi2@gmail.com"
-            size="small"
-            sx={{
-              color: 'text.secondary',
-              '&:hover': { color: 'text.primary', bgcolor: 'action.hover' },
-            }}
-            aria-label="Email"
-          >
-            <EmailIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            component="a"
             href="https://www.linkedin.com/in/akaash-trivedi"
             target="_blank"
             rel="noopener noreferrer"

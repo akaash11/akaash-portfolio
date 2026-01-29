@@ -267,48 +267,6 @@ export default function Contact() {
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-              {/* Email */}
-              <ButtonBase
-                component="a"
-                href="mailto:akaashtrivedi2@gmail.com"
-                aria-label="Send email to akaashtrivedi2@gmail.com"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 2,
-                  p: 1.5,
-                  borderRadius: 1.5,
-                  justifyContent: 'flex-start',
-                  transition: 'all 0.2s ease',
-                  '&:hover': {
-                    bgcolor: 'action.hover',
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: 'action.selected',
-                  }}
-                >
-                  <EmailIcon sx={{ fontSize: 20, color: 'text.primary' }} />
-                </Box>
-                <Box sx={{ flex: 1, textAlign: 'left' }}>
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
-                    Email
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    akaashtrivedi2@gmail.com
-                  </Typography>
-                </Box>
-                <OpenInNewIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-              </ButtonBase>
-
               {/* LinkedIn */}
               <ButtonBase
                 component="a"

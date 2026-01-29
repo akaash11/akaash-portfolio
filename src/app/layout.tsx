@@ -135,12 +135,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Structured data for SEO (JSON-LD)
+  // Note: Email removed to prevent bot scraping
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: siteConfig.author.name,
     jobTitle: siteConfig.author.title,
-    email: siteConfig.author.email,
     url: siteConfig.url,
     sameAs: [
       siteConfig.social.linkedin,
