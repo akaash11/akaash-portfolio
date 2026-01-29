@@ -5,6 +5,7 @@ import ThemeRegistry from "@/components/ThemeRegistry";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import EasterEgg from "@/components/EasterEgg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -177,6 +178,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeRegistry>{children}</ThemeRegistry>
+        <EasterEgg />
         <Analytics />
         <SpeedInsights />
       </body>
