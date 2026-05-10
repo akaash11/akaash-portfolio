@@ -96,12 +96,24 @@ export default function Hero() {
             variant="h3"
             component="h2"
             sx={{
-              mb: 3,
+              mb: 1,
               color: 'text.primary',
               fontWeight: 600,
             }}
           >
-            Full Stack Engineer
+            Staff Software Engineer
+          </Typography>
+
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{
+              mb: 3,
+              color: 'text.secondary',
+              fontWeight: 400,
+            }}
+          >
+            @ Marvell Technology
           </Typography>
 
           <Typography
@@ -115,7 +127,7 @@ export default function Hero() {
               mx: { xs: 'auto', md: 0 },
             }}
           >
-            {yearsOfExperience}+ years delivering end-to-end systems—from architecture to production.
+            {yearsOfExperience}+ years delivering end-to-end systems — from architecture to production.
           </Typography>
 
           <Typography
@@ -128,7 +140,7 @@ export default function Hero() {
               lineHeight: 1.8,
             }}
           >
-            Full-stack engineering with Python, React, PostgreSQL, Redis, and cloud platforms.
+            Shipped <strong style={{ color: '#60a5fa' }}>2248 Linko</strong> on the App Store &amp; Google Play. Led <strong style={{ color: '#60a5fa' }}>NSF-funded HCI research</strong> at Santa Clara University.
           </Typography>
 
           <Box
@@ -163,6 +175,37 @@ export default function Hero() {
               }}
             >
               View Projects
+            </Button>
+
+            <Button
+              variant="outlined"
+              size="large"
+              href="https://playlinko.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={
+                <Box
+                  component="img"
+                  src="/linko-mascot.png"
+                  alt="Linko"
+                  sx={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }}
+                />
+              }
+              aria-label="Play 2248 Linko game"
+              sx={{
+                borderColor: 'primary.main',
+                color: 'primary.main',
+                '&:hover': {
+                  borderColor: 'primary.light',
+                  bgcolor: isDark
+                    ? 'rgba(96, 165, 250, 0.1)'
+                    : 'rgba(37, 99, 235, 0.1)',
+                  transform: 'translateY(-2px)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Play Linko
             </Button>
 
             <Button

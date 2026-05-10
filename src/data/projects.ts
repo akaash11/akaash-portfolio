@@ -10,12 +10,37 @@ export interface Project {
   liveLink?: string;
   githubLink?: string;
   devpostLink?: string;
+  appStoreLink?: string;
+  playStoreLink?: string;
+  image?: string;
   badge?: string; // Legacy: single badge (e.g., "Featured", "Hackathon Winner")
   badges?: string[]; // Multiple badges (takes precedence over badge if present)
   category?: ProjectCategory;
+  featured?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: 'linko-2248',
+    title: '2248 Linko',
+    subtitle: 'Number Merge Puzzle Game',
+    description:
+      'Independently shipped mobile game on the App Store and Google Play. Draw chains of tiles to merge numbers and chase the high score, with Linko the Shiba Inu reacting to every move.',
+    highlights: [
+      'Launched on Apple App Store and Google Play Store',
+      'Built with Expo / React Native for cross-platform iOS & Android',
+      'Supabase backend for real-time leaderboards and score sync',
+      'Offline-first — plays without internet, syncs on reconnect',
+      'Daily missions, rewarded ads, and in-app purchases',
+    ],
+    technologies: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Zustand', 'EAS'],
+    appStoreLink: 'https://apps.apple.com/app/playlinko-2248',
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.playlinko.mergegame',
+    image: '/linko-icon.png',
+    badges: ['App Store & Google Play'],
+    category: 'mobile',
+    featured: true,
+  },
     {
         id: 'smar',
         title: 'SMAR',

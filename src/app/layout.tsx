@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "Akaash Trivedi Portfolio",
     // Roles & Titles
     "Full Stack Engineer",
+    "Staff Software Engineer",
     "Senior Software Engineer",
     "Software Developer",
     "Backend Engineer",

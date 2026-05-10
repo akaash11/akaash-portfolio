@@ -19,14 +19,14 @@ export const siteConfig = {
   
   // Site metadata
   name: 'Akaash Trivedi Portfolio',
-  title: 'Akaash Trivedi | Full Stack Engineer',
-  description: `Sr. Software Engineer with ${yearsOfExperience}+ years of experience. Specializing in distributed systems, APIs, cloud architecture, and full-stack development with Python, React, PostgreSQL, Redis, and AWS.`,
+  title: 'Akaash Trivedi | Staff Software Engineer',
+  description: `Staff Software Engineer with ${yearsOfExperience}+ years of experience. Specializing in distributed systems, APIs, cloud architecture, and full-stack development with Python, React, PostgreSQL, Redis, and AWS.`,
   
   // Author information
   author: {
     name: 'Akaash Trivedi',
     email: 'akaashtrivedi2@gmail.com',
-    title: 'Sr. Software Engineer @ Marvell Technology',
+    title: 'Staff Software Engineer @ Marvell Technology',
     location: 'New York',
     education: 'MS in Computer Science & Engineering',
   },

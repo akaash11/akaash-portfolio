@@ -49,7 +49,7 @@ export default function Footer() {
           >
             <span>New York</span>
             <span>•</span>
-            <span>Sr. Software Engineer @ Marvell Technology</span>
+            <span>Staff Software Engineer @ Marvell Technology</span>
             <span>•</span>
             <span>MS in Computer Science & Engineering</span>
           </Typography>

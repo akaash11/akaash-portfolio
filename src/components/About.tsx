@@ -125,7 +125,7 @@ export default function About({ isStandalone = false }: AboutProps) {
                 fontSize: { xs: '0.9375rem', md: '1rem' },
               }}
             >
-              <strong style={{ color: '#60a5fa' }}>Full Stack Engineer</strong> with{' '}
+              <strong style={{ color: '#60a5fa' }}>Staff Software Engineer</strong> with{' '}
               <strong style={{ color: '#60a5fa' }}>{yearsOfExperience}+ years</strong> building 
               scalable systems across enterprise software, cloud infrastructure, and HCI research. 
               Master's in CS from Santa Clara (4.0 GPA) where I led research and taught core courses.

@@ -13,6 +13,8 @@ import {
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CodeIcon from '@mui/icons-material/Code';
+import AppleIcon from '@mui/icons-material/Apple';
+import AndroidIcon from '@mui/icons-material/Android';
 import { Project } from '@/data/projects';
 import { analytics } from '@/utils/analytics';
 
@@ -32,13 +34,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card
       sx={{
+        width: '100%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         bgcolor: 'background.paper',
         transition: 'all 0.2s ease',
         border: '1px solid',
-        borderColor: 'divider',
+        borderColor: project.featured ? 'primary.main' : 'divider',
         '&:hover': {
           borderColor: 'primary.main',
           boxShadow: 2,
@@ -80,8 +83,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                       ? '#10b981'
                       : badge.includes('NSF') || badge.includes('Award')
                       ? '#d4af37'
+                      : badge.includes('App Store') && badge.includes('Google Play')
+                      ? 'primary.main'
                       : 'primary.main',
-                  color: 'background.default',
+                  color: '#fff',
                   fontWeight: 600,
                   fontSize: '0.6875rem',
                   height: 20,
@@ -205,7 +210,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </Box>
 
         {/* Action Buttons */}
-        <Stack direction="row" spacing={1.5} sx={{ mt: 'auto' }}>
+        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 'auto', gap: 1 }}>
           {primaryLink && (
             <Button
               variant="contained"
@@ -220,13 +225,53 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   ? `View live demo of ${project.title}`
                   : `View ${project.title} on Devpost`
               }
+              sx={{ textTransform: 'none', fontWeight: 600, fontSize: '0.8125rem' }}
+            >
+              {primaryLabel}
+            </Button>
+          )}
+          {project.appStoreLink && (
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<AppleIcon fontSize="small" />}
+              href={project.appStoreLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleLinkClick('live')}
+              aria-label={`Download ${project.title} on the App Store`}
               sx={{
                 textTransform: 'none',
                 fontWeight: 600,
                 fontSize: '0.8125rem',
+                borderColor: 'divider',
+                color: 'text.primary',
+                '&:hover': { borderColor: 'primary.main' },
               }}
             >
-              {primaryLabel}
+              App Store
+            </Button>
+          )}
+          {project.playStoreLink && (
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<AndroidIcon fontSize="small" />}
+              href={project.playStoreLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleLinkClick('live')}
+              aria-label={`Download ${project.title} on Google Play`}
+              sx={{
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: '0.8125rem',
+                borderColor: 'divider',
+                color: 'text.primary',
+                '&:hover': { borderColor: '#01875f' },
+              }}
+            >
+              Google Play
             </Button>
           )}
           {project.githubLink && (
@@ -244,9 +289,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 fontWeight: 600,
                 fontSize: '0.8125rem',
                 borderColor: 'divider',
-                '&:hover': {
-                  borderColor: 'primary.main',
-                },
+                '&:hover': { borderColor: 'primary.main' },
               }}
             >
               GitHub
