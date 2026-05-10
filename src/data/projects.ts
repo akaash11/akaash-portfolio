@@ -34,7 +34,7 @@ export const projects: Project[] = [
       'Daily missions, rewarded ads, and in-app purchases',
     ],
     technologies: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Zustand', 'EAS'],
-    appStoreLink: 'https://apps.apple.com/app/playlinko-2248',
+    appStoreLink: 'https://apps.apple.com/app/id6760681337',
     playStoreLink: 'https://play.google.com/store/apps/details?id=com.playlinko.mergegame',
     image: '/linko-icon.png',
     badges: ['App Store & Google Play'],
