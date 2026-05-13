@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Akaash">
+  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+
+  <g transform="translate(-4 0)">
+    <!-- A outline (no crossbar) -->
+    <path
+      d="M20 48 L32 16 L44 48"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- Crossbar as rocket arrow (left edge of A → right/outside) -->
+    <path
+      d="M22 44 L54.7 31.6"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <polygon points="64 28 56.9 37.2 52.5 26.0" fill="#ffffff"/>
+  </g>
+</svg>
+
