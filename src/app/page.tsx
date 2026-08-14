@@ -1,26 +1,20 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Timeline from '@/components/Timeline';
+import Projects from '@/components/Projects';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import { Box } from '@mui/material';
 
-// Lazy load components below the fold for better performance
-const About = dynamic(() => import('@/components/About'), {
-  loading: () => null,
-});
-const Timeline = dynamic(() => import('@/components/Timeline'), {
-  loading: () => null,
-});
-const Projects = dynamic(() => import('@/components/Projects'), {
-  loading: () => null,
-});
-const Contact = dynamic(() => import('@/components/Contact'), {
-  loading: () => null,
-});
-const Footer = dynamic(() => import('@/components/Footer'), {
-  loading: () => null,
-});
+// Note: these were previously loaded via next/dynamic(..., { loading: () => null })
+// to lazy-load below-the-fold sections. That pattern renders `null` for the
+// Suspense fallback, which (a) hides this content from the server-rendered
+// HTML entirely and (b) desyncs MUI's Emotion style-insertion cache between
+// the server and client passes, causing widespread hydration className
+// mismatches. Plain imports match every other route in this app.
 
 /**
  * Homepage - Full scroll experience
