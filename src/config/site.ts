@@ -19,8 +19,11 @@ export const siteConfig = {
   
   // Site metadata
   name: 'Akaash Trivedi Portfolio',
-  title: 'Akaash Trivedi | Staff Software Engineer',
-  description: `Staff Software Engineer with ${yearsOfExperience}+ years of experience. Specializing in distributed systems, APIs, cloud architecture, and full-stack development with Python, React, PostgreSQL, Redis, and AWS.`,
+  title: 'Akaash Trivedi | Staff Software Engineer, Applied AI',
+  description: `Applied AI engineer with ${yearsOfExperience}+ years spanning cybersecurity, fintech, and semiconductors. Staff Software Engineer at Marvell Technology building agentic systems, AI developer tooling, and retrieval infrastructure, with a security background from Qualys (SIEM, MITRE ATT&CK) and fintech from Opus (Click-to-Pay, payments microservices).`,
+  
+  // Number of years of professional experience (kept for places that need the raw number)
+  yearsOfExperience,
   
   // Author information
   author: {

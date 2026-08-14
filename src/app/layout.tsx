@@ -5,6 +5,8 @@ import ThemeRegistry from "@/components/ThemeRegistry";
 import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { experiences } from "@/data/experience";
+import { monthYearToISO } from "@/utils/experience";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,31 +37,41 @@ export const metadata: Metadata = {
     // Personal Brand
     "Akaash Trivedi",
     "Akaash Trivedi Portfolio",
-    // Roles & Titles
-    "Full Stack Engineer",
+    // Roles & Titles (lead with applied AI)
+    "Applied AI Engineer",
+    "AI Engineer",
+    "Agentic Systems Engineer",
+    "AI Developer Tooling",
     "Staff Software Engineer",
     "Senior Software Engineer",
-    "Software Developer",
-    "Backend Engineer",
-    "Frontend Developer",
-    // Core Technologies
-    "React Developer",
-    "TypeScript Developer",
-    "Python Developer",
-    "Node.js Developer",
-    "Next.js Portfolio",
-    // Specializations
+    // AI Specializations
+    "Retrieval Augmented Generation",
+    "RAG Engineer",
+    "AI Security",
+    "LLM Engineering",
+    "MCP",
+    // Security & Fintech spikes
+    "Application Security",
+    "SIEM",
+    "MITRE ATT&CK",
+    "Fintech Engineering",
+    "Payments Engineering",
+    // Secondary: Distributed systems & full-stack
     "Distributed Systems",
     "Cloud Architecture",
     "API Development",
     "System Design",
     "Microservices",
+    "Python Developer",
+    "TypeScript",
+    "React",
+    "Node.js",
     "PostgreSQL",
     "Redis",
     "AWS",
+    "Docker",
     // Location-based
     "Software Engineer New York",
-    "Full Stack Engineer NYC",
     // Companies & Education
     "Marvell Technology",
     "Qualys",
@@ -70,8 +82,6 @@ export const metadata: Metadata = {
     // Technical Skills
     "REST API",
     "GraphQL",
-    "Docker",
-    "Kubernetes",
     "CI/CD",
   ],
   authors: [{ name: siteConfig.author.name, url: siteConfig.social.linkedin }],
@@ -94,7 +104,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.author.name} - Full Stack Engineer`,
+        alt: `${siteConfig.author.name} - Applied AI Engineer`,
         type: "image/png",
       },
     ],
@@ -143,6 +153,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Work/research/teaching history as machine-readable structured data,
+  // generated from the same source of truth the Experience page renders —
+  // keeps this in sync with src/data/experience.ts without hand-duplication.
+  // Education entries are covered separately by `alumniOf` below.
+  const hasOccupation = experiences
+    .filter((exp) => exp.type === 'work' || exp.type === 'research' || exp.type === 'teaching')
+    .map((exp) => ({
+      "@type": "OrganizationRole",
+      roleName: exp.title,
+      startDate: monthYearToISO(exp.startDate),
+      ...(exp.current ? {} : { endDate: monthYearToISO(exp.endDate) }),
+      worksFor: {
+        "@type": "Organization",
+        name: exp.organization,
+      },
+    }));
+
   // Structured data for SEO (JSON-LD)
   // Note: Email removed to prevent bot scraping
   const jsonLd = {
@@ -169,6 +196,7 @@ export default function RootLayout({
       "@type": "Organization",
       name: "Marvell Technology",
     },
+    hasOccupation,
   };
 
   return (

@@ -2,70 +2,75 @@
 
 import React, { useMemo, useState } from 'react';
 import { Box, Typography, Chip, Stack, Divider, Tooltip, useTheme } from '@mui/material';
-import CodeIcon from '@mui/icons-material/Code';
-import CloudIcon from '@mui/icons-material/Cloud';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import GroupsIcon from '@mui/icons-material/Groups';
-import SpeedIcon from '@mui/icons-material/Speed';
+import SecurityIcon from '@mui/icons-material/Security';
+import PaidIcon from '@mui/icons-material/Paid';
 import ArchitectureIcon from '@mui/icons-material/Architecture';
+import CodeIcon from '@mui/icons-material/Code';
+import GroupsIcon from '@mui/icons-material/Groups';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 const techStack = [
   'Python',
+  'LLMs & Agents',
+  'RAG / Retrieval',
+  'MCP',
   'TypeScript',
   'React',
-  'Node.js',
   'PostgreSQL',
-  'MongoDB',
   'Redis',
+  'Celery',
   'AWS',
   'Docker',
-  'Kubernetes',
 ];
 
 const strengths = [
   {
-    icon: CodeIcon,
+    icon: PsychologyIcon,
     color: '#60a5fa',
-    title: 'Full-Stack Development',
-    short: 'Build production web systems with Python, React, PostgreSQL, Redis, and CI/CD.',
+    title: 'Applied AI & Agentic Systems',
+    short: 'Build agent pipelines, retrieval systems, and AI developer tooling.',
     description:
-      'End-to-end development across UI, APIs (REST/GraphQL), and data layers. Strong focus on clean architecture, maintainability, and performance, with async workflows (Celery/Redis) and automated testing/CI.',
+      'Agent pipelines, reusable skills, and MCP integrations at Marvell. Drove team adoption of Cursor, GitHub Copilot, and Claude Code across a DSP team. Currently building a hand-implemented retrieval engine (IVF, HNSW, product quantization) with an nDCG/MRR eval harness.',
   },
   {
-    icon: CloudIcon,
-    color: '#a78bfa',
-    title: 'Cloud & Infrastructure',
-    short: 'Deploy and scale with AWS, Docker, Kubernetes, and CI/CD pipelines.',
-    description: 'Hands-on experience deploying distributed systems on cloud platforms. Expertise in containerization, orchestration, and building reliable infrastructure.',
+    icon: SecurityIcon,
+    color: '#f87171',
+    title: 'Security-Minded Engineering',
+    short: 'SIEM threat detection and MITRE ATT&CK mapping at Qualys; write weekly on AI security.',
+    description:
+      'Built enterprise threat detection for SIEM workflows and MITRE ATT&CK tactic/technique dashboards at Qualys. Write weekly on AI security: supply-chain attacks, agent hijacking, and inference-server attack surface.',
+  },
+  {
+    icon: PaidIcon,
+    color: '#34d399',
+    title: 'Fintech & Regulated Systems',
+    short: 'Click-to-Pay at checkout scale, payments microservices, and ML risk models at Opus.',
+    description:
+      'Architected a Click-to-Pay / Digital Card Facilitator solution at merchant checkout scale, built Spring Boot payments microservices, and shipped a Flask + MongoDB service serving a risk-prediction model, plus ATM time-series forecasting at ~97% accuracy.',
   },
   {
     icon: ArchitectureIcon,
     color: '#2dd4bf',
-    title: 'System Design',
-    short: 'Design scalable architectures with focus on reliability and performance.',
-    description: 'Strong background in distributed systems, microservices, and database optimization. Coursework in advanced operating systems and distributed systems.',
+    title: 'Distributed Systems & Orchestration',
+    short: 'Celery/Redis job queues, batch simulation orchestration, CI cut from 19h to 2h.',
+    description:
+      'Scaled a Celery + Redis job queue from 5 to 25 workers, built Papermill-parameterized notebook pipelines for 224G 3nm simulation workloads, and cut CI runtime from 19 hours to 2 hours.',
   },
   {
-    icon: PsychologyIcon,
-    color: '#fb923c',
-    title: 'Problem Solving',
-    short: 'Analytical mindset for complex technical challenges and optimization.',
-    description: 'Strong foundation in algorithms and data structures. Experience debugging production issues and optimizing performance bottlenecks.',
+    icon: CodeIcon,
+    color: '#a78bfa',
+    title: 'Full-Stack & Cloud',
+    short: 'Production web systems with Python, React, PostgreSQL, and AWS.',
+    description:
+      'End-to-end development across UI, APIs, and data layers, deployed on AWS with Docker. Owned the HSSLab internal platform end-to-end, growing active users from ~30 to ~80.',
   },
   {
     icon: GroupsIcon,
-    color: '#60a5fa',
+    color: '#fb923c',
     title: 'Leadership & Mentorship',
     short: 'Led HCI research teams, taught CS courses, mentor through code reviews.',
     description: 'Experience leading technical teams, teaching undergraduate courses, and mentoring junior engineers through design and code reviews.',
-  },
-  {
-    icon: SpeedIcon,
-    color: '#a78bfa',
-    title: 'Pragmatic Delivery',
-    short: 'Ship quality products: design → implementation → release → iteration.',
-    description: 'Focus on delivering value while maintaining quality. Balance technical excellence with shipping velocity and business impact.',
   },
 ];
 
@@ -125,10 +130,12 @@ export default function About({ isStandalone = false }: AboutProps) {
                 fontSize: { xs: '0.9375rem', md: '1rem' },
               }}
             >
-              <strong style={{ color: '#60a5fa' }}>Staff Software Engineer</strong> with{' '}
-              <strong style={{ color: '#60a5fa' }}>{yearsOfExperience}+ years</strong> building 
-              scalable systems across enterprise software, cloud infrastructure, and HCI research. 
-              Master's in CS from Santa Clara (4.0 GPA) where I led research and taught core courses.
+              <strong style={{ color: '#60a5fa' }}>Applied AI engineer</strong> and{' '}
+              <strong style={{ color: '#60a5fa' }}>Staff Software Engineer</strong> at Marvell
+              Technology, with <strong style={{ color: '#60a5fa' }}>{yearsOfExperience}+ years</strong>{' '}
+              spanning cybersecurity, fintech, and semiconductors, now building agentic systems,
+              AI developer tooling, and retrieval infrastructure. Master&apos;s in CS from Santa Clara
+              (4.0 GPA), where I led research and taught core courses.
             </Typography>
 
             <Typography
@@ -146,11 +153,14 @@ export default function About({ isStandalone = false }: AboutProps) {
                 },
               }}
             >
-              From early-stage startups to Fortune 500 companies, I've architected{' '}
-              <strong style={{ color: '#60a5fa' }}>full-stack solutions</strong>, optimized 
-              distributed systems, and mentored engineering teams. Whether building production 
-              systems serving thousands of users or winning hackathons with innovative prototypes, 
-              I bring technical depth, pragmatic problem-solving, and focus on delivering value.
+              Most applied-AI engineers come from web development. Very few also carry{' '}
+              <strong style={{ color: '#60a5fa' }}>appsec</strong> and{' '}
+              <strong style={{ color: '#60a5fa' }}>payments</strong> experience. I bring both:
+              SIEM threat detection and MITRE ATT&amp;CK mapping at Qualys, and Click-to-Pay /
+              payments microservices and ML risk models at Opus. I write weekly on AI security:
+              supply-chain risk, agent hijacking, and inference-server attack surface. Distributed
+              systems work (Celery/Redis, batch simulation orchestration) and full-stack/cloud
+              delivery round out the toolset.
             </Typography>
 
             {/* Tech Stack Chips */}

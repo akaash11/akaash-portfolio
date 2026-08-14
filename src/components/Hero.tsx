@@ -96,12 +96,13 @@ export default function Hero() {
             variant="h3"
             component="h2"
             sx={{
-              mb: 1,
+              mb: 0.5,
               color: 'text.primary',
               fontWeight: 600,
+              fontSize: { xs: '1.375rem', sm: '1.75rem', md: '2rem' },
             }}
           >
-            Staff Software Engineer
+            Staff Software Engineer &middot; Applied AI &amp; Developer Experience
           </Typography>
 
           <Typography
@@ -119,7 +120,7 @@ export default function Hero() {
           <Typography
             variant="body1"
             sx={{
-              mb: 1,
+              mb: 5,
               color: 'text.secondary',
               fontWeight: 400,
               fontSize: '1.125rem',
@@ -127,20 +128,7 @@ export default function Hero() {
               mx: { xs: 'auto', md: 0 },
             }}
           >
-            {yearsOfExperience}+ years delivering end-to-end systems — from architecture to production.
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              mb: 5,
-              color: 'text.secondary',
-              maxWidth: '650px',
-              mx: { xs: 'auto', md: 0 },
-              lineHeight: 1.8,
-            }}
-          >
-            Shipped <strong style={{ color: '#60a5fa' }}>2248 Linko</strong> on the App Store &amp; Google Play. Led <strong style={{ color: '#60a5fa' }}>NSF-funded HCI research</strong> at Santa Clara University.
+            {yearsOfExperience}+ years across cybersecurity, fintech, and semiconductors. Now building agentic systems and the developer platforms engineering teams run on.
           </Typography>
 
           <Box

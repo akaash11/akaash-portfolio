@@ -8,7 +8,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: `Experience - ${siteConfig.author.name} | Professional Timeline`,
-  description: `Explore ${siteConfig.author.name}'s professional journey: Staff Software Engineer at Marvell Technology, former engineer at Qualys, HCI researcher at Santa Clara University, and teaching assistant. ${siteConfig.description.split(' ')[5]}+ years of industry experience.`,
+  description: `Explore ${siteConfig.author.name}'s professional journey: Staff Software Engineer at Marvell Technology building agentic systems and developer tooling, security engineering at Qualys, fintech engineering at Opus, and HCI research at Santa Clara University. ${siteConfig.yearsOfExperience}+ years of industry experience.`,
   keywords: [
     'Akaash Trivedi Experience',
     'Professional Timeline',

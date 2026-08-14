@@ -271,8 +271,11 @@ function TimelineItem({ experience, expanded, onToggle, isFirstItem = false, isS
         </Box>
 
         {/* Expandable Details */}
+        {/* No unmountOnExit: collapsed content stays in the DOM (height: 0) so
+            it's crawlable by search engines and AI scrapers even before a
+            user interacts with it. */}
         {hasDetails && (
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Collapse in={expanded} timeout="auto">
             <Box sx={{ mt: 1.5, pt: 1.5, borderTop: '1px solid', borderColor: 'divider' }}>
               {/* Description */}
               {experience.description && (
@@ -378,7 +381,11 @@ export default function Timeline({ isStandalone = false }: TimelineProps) {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [selectedTab, setSelectedTab] = useState<Category>('experience');
   const [experienceFilter, setExperienceFilter] = useState<ExperienceFilter>('all');
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  // The most important content (the current role) should be visible with
+  // zero interaction, so seed expansion from the data instead of starting empty.
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(
+    () => new Set(experiences.filter((exp) => exp.current).map((exp) => exp.id))
+  );
 
   // Calculate experience duration
   const experienceDuration = useMemo(() => {
@@ -393,7 +400,7 @@ export default function Timeline({ isStandalone = false }: TimelineProps) {
       result[category]++;
     });
     return result;
-  }, [experiences]);
+  }, []);
 
   // Filter and sort experiences
   const filteredExperiences = useMemo(() => {

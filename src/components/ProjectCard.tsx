@@ -79,12 +79,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 size="small"
                 sx={{
                   bgcolor:
-                    badge === 'Hackathon Winner'
+                    badge === 'In Progress'
+                      ? '#f59e0b'
+                      : badge === 'Hackathon Winner' || badge === 'Hackathon'
                       ? '#10b981'
                       : badge.includes('NSF') || badge.includes('Award')
                       ? '#d4af37'
-                      : badge.includes('App Store') && badge.includes('Google Play')
-                      ? 'primary.main'
+                      : badge === 'Shipped Solo'
+                      ? '#a78bfa'
                       : 'primary.main',
                   color: '#fff',
                   fontWeight: 600,

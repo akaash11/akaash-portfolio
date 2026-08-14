@@ -52,4 +52,26 @@ export function getExperienceLabel(): string {
   return label;
 }
 
+const MONTH_NAMES = [
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+];
+
+/**
+ * Converts a "Month Year" string (e.g. "April 2026") from the experience
+ * data into an ISO "YYYY-MM" string for structured data. Returns undefined
+ * for non-date values like "Present" so callers can omit the field rather
+ * than emit a fabricated end date.
+ */
+export function monthYearToISO(dateStr: string): string | undefined {
+  const match = dateStr.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (!match) return undefined;
+
+  const monthIndex = MONTH_NAMES.indexOf(match[1].toLowerCase());
+  if (monthIndex === -1) return undefined;
+
+  const month = String(monthIndex + 1).padStart(2, '0');
+  return `${match[2]}-${month}`;
+}
+
 export { CAREER_START_DATE };

@@ -56,13 +56,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   //   priority: 0.7,
   // }))
 
-  // Future: Add blog posts
-  // posts.map(post => ({
-  //   url: `${baseUrl}/blog/${post.slug}`,
-  //   lastModified: post.publishedAt,
-  //   changeFrequency: 'yearly',
-  //   priority: 0.6,
-  // }))
-
   return pages;
 }

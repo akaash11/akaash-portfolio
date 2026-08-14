@@ -7,18 +7,18 @@ import Section from '@/components/Section';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `About - ${siteConfig.author.name} | Full Stack Engineer`,
-  description: `Learn about ${siteConfig.author.name}'s ${siteConfig.description.split(' ')[5]} years of experience in full-stack development, distributed systems, cloud architecture, and API design. Specializing in React, TypeScript, Python, Node.js, PostgreSQL, and AWS.`,
+  title: `About - ${siteConfig.author.name} | Applied AI Engineer`,
+  description: `Learn about ${siteConfig.author.name}'s ${siteConfig.yearsOfExperience}+ years across cybersecurity, fintech, and semiconductors, now building agentic systems, AI developer tooling, and retrieval infrastructure at Marvell Technology.`,
   keywords: [
     'About Akaash Trivedi',
-    'Full Stack Engineer Background',
-    'Software Engineer Experience',
-    'React Developer Portfolio',
-    'TypeScript Expert',
-    'Python Developer',
+    'Applied AI Engineer',
+    'AI Engineering Background',
+    'Agentic Systems Engineer',
+    'AI Security',
+    'Developer Tooling',
     'Distributed Systems Engineer',
-    'Cloud Architecture',
     'Marvell Technology Engineer',
+    'Qualys',
     'Santa Clara University',
   ],
   openGraph: {
