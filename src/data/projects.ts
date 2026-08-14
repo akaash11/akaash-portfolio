@@ -59,7 +59,7 @@ export const projects: Project[] = [
   {
     id: 'linko-2248',
     title: '2248 Linko',
-    subtitle: 'Number Merge Puzzle Game: Shipped Solo',
+    subtitle: 'Number Merge Puzzle Game',
     description:
       'Independently shipped mobile game on the App Store and Google Play. Draw chains of tiles to merge numbers and chase the high score, with Linko the Shiba Inu reacting to every move.',
     highlights: [
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     appStoreLink: 'https://apps.apple.com/app/id6760681337',
     playStoreLink: 'https://play.google.com/store/apps/details?id=com.playlinko.mergegame',
     image: '/linko-icon.png',
-    badges: ['Shipped Solo', 'App Store & Google Play'],
+    badges: ['Shipped Solo'],
     category: 'mobile',
   },
   {

@@ -22,6 +22,16 @@ interface ProjectCardProps {
   project: Project;
 }
 
+// A plain `Hackathon` stays neutral while `Hackathon Winner` is highlighted.
+function getBadgeColors(badge: string) {
+  if (badge === 'In Progress') return { bgcolor: '#f59e0b', color: '#fff' };
+  if (badge === 'Hackathon Winner') return { bgcolor: '#10b981', color: 'background.default' };
+  if (badge === 'Hackathon') return { bgcolor: 'primary.main', color: 'background.default' };
+  if (badge.includes('NSF') || badge.includes('Award')) return { bgcolor: '#d4af37', color: '#fff' };
+  if (badge === 'Shipped Solo') return { bgcolor: '#a78bfa', color: '#fff' };
+  return { bgcolor: 'primary.main', color: '#fff' };
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
   const handleLinkClick = (linkType: 'live' | 'github' | 'devpost') => {
     analytics.trackProjectClick(project.title, linkType);
@@ -30,6 +40,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const primaryLink = project.liveLink || project.devpostLink;
   const primaryLabel = project.liveLink ? 'Live Demo' : 'Devpost';
   const primaryType: 'live' | 'devpost' = project.liveLink ? 'live' : 'devpost';
+
+  const badges = project.badges?.length
+    ? project.badges
+    : project.badge
+    ? [project.badge]
+    : [];
 
   return (
     <Card
@@ -55,80 +71,52 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           display: 'flex',
           flexDirection: 'column',
           '&:last-child': { pb: 2.5 },
-          position: 'relative',
         }}
       >
-        {/* Badges - Top Right */}
-        {project.badges && project.badges.length > 0 ? (
-          <Box
+        {/* Title and badges share a row. The badges are in normal flow rather
+            than absolutely positioned, so a card with more than one badge wraps
+            the row instead of overlapping the subtitle beneath it. */}
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1, mb: 0.5 }}>
+          <Typography
+            variant="h5"
+            component="h2"
             sx={{
-              position: 'absolute',
-              top: 16,
-              right: 16,
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 0.5,
-              justifyContent: 'flex-end',
-              maxWidth: '60%',
+              flex: 1,
+              fontWeight: 700,
+              fontSize: '1.25rem',
+              color: 'text.primary',
+              lineHeight: 1.2,
             }}
           >
-            {project.badges.map((badge, idx) => (
-              <Chip
-                key={idx}
-                label={badge}
-                size="small"
-                sx={{
-                  bgcolor:
-                    badge === 'In Progress'
-                      ? '#f59e0b'
-                      : badge === 'Hackathon Winner' || badge === 'Hackathon'
-                      ? '#10b981'
-                      : badge.includes('NSF') || badge.includes('Award')
-                      ? '#d4af37'
-                      : badge === 'Shipped Solo'
-                      ? '#a78bfa'
-                      : 'primary.main',
-                  color: '#fff',
-                  fontWeight: 600,
-                  fontSize: '0.6875rem',
-                  height: 20,
-                }}
-              />
-            ))}
-          </Box>
-        ) : (
-          project.badge && (
-            <Chip
-              label={project.badge}
-              size="small"
-              sx={{
-                position: 'absolute',
-                top: 16,
-                right: 16,
-                bgcolor: project.badge === 'Hackathon Winner' ? '#10b981' : 'primary.main',
-                color: 'background.default',
-                fontWeight: 600,
-                fontSize: '0.6875rem',
-                height: 20,
-              }}
-            />
-          )
-        )}
+            {project.title}
+          </Typography>
 
-        {/* Title */}
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            mb: 0.5,
-            fontWeight: 700,
-            fontSize: '1.25rem',
-            color: 'text.primary',
-            lineHeight: 1.2,
-          }}
-        >
-          {project.title}
-        </Typography>
+          {badges.length > 0 && (
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 0.5,
+                justifyContent: 'flex-end',
+                maxWidth: '55%',
+              }}
+            >
+              {badges.map((badge) => (
+                <Chip
+                  key={badge}
+                  label={badge}
+                  size="small"
+                  sx={{
+                    ...getBadgeColors(badge),
+                    fontWeight: 600,
+                    fontSize: '0.6875rem',
+                    height: 20,
+                  }}
+                />
+              ))}
+            </Box>
+          )}
+        </Box>
 
         {/* Subtitle */}
         <Typography
