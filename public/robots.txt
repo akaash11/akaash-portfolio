@@ -1,7 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-# Note: Site URL is configured in src/config/site.ts (NEXT_PUBLIC_SITE_URL)
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://akaash.app/sitemap.xml

@@ -3,6 +3,8 @@
 import React, { useMemo } from 'react';
 import { Box, Typography, Button, Container, useTheme } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { siteConfig } from '@/config/site';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 export default function Hero() {
@@ -128,7 +130,9 @@ export default function Hero() {
               mx: { xs: 'auto', md: 0 },
             }}
           >
-            {yearsOfExperience}+ years across cybersecurity, fintech, and semiconductors. Now building agentic systems and the developer platforms engineering teams run on.
+            I build agentic systems, and the platforms and pipelines engineering teams run on, in
+            regulated and security-sensitive environments. {yearsOfExperience}+ years across
+            cybersecurity, fintech, and semiconductors.
           </Typography>
 
           <Box
@@ -165,36 +169,7 @@ export default function Hero() {
               View Projects
             </Button>
 
-            <Button
-              variant="outlined"
-              size="large"
-              href="https://playlinko.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={
-                <Box
-                  component="img"
-                  src="/linko-mascot.png"
-                  alt="Linko"
-                  sx={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }}
-                />
-              }
-              aria-label="Play 2248 Linko game"
-              sx={{
-                borderColor: 'primary.main',
-                color: 'primary.main',
-                '&:hover': {
-                  borderColor: 'primary.light',
-                  bgcolor: isDark
-                    ? 'rgba(96, 165, 250, 0.1)'
-                    : 'rgba(37, 99, 235, 0.1)',
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Play Linko
-            </Button>
+
 
             <Button
               variant="outlined"
@@ -215,6 +190,30 @@ export default function Hero() {
               }}
             >
               Get in Touch
+            </Button>
+
+            <Button
+              variant="outlined"
+              size="large"
+              href={siteConfig.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={<LinkedInIcon />}
+              aria-label="Akaash Trivedi on LinkedIn"
+              sx={{
+                borderColor: 'primary.main',
+                color: 'primary.main',
+                '&:hover': {
+                  borderColor: 'primary.light',
+                  bgcolor: isDark
+                    ? 'rgba(96, 165, 250, 0.1)'
+                    : 'rgba(37, 99, 235, 0.1)',
+                  transform: 'translateY(-2px)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              LinkedIn
             </Button>
           </Box>
         </Box>

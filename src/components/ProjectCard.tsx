@@ -25,6 +25,8 @@ interface ProjectCardProps {
 // A plain `Hackathon` stays neutral while `Hackathon Winner` is highlighted.
 function getBadgeColors(badge: string) {
   if (badge === 'In Progress') return { bgcolor: '#f59e0b', color: '#fff' };
+  if (badge === 'Planned') return { bgcolor: 'action.selected', color: 'text.primary' };
+  if (badge === 'Evaluated') return { bgcolor: '#0ea5e9', color: '#fff' };
   if (badge === 'Hackathon Winner') return { bgcolor: '#10b981', color: 'background.default' };
   if (badge === 'Hackathon') return { bgcolor: 'primary.main', color: 'background.default' };
   if (badge.includes('NSF') || badge.includes('Award')) return { bgcolor: '#d4af37', color: '#fff' };

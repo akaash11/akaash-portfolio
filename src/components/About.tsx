@@ -6,32 +6,45 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SecurityIcon from '@mui/icons-material/Security';
 import PaidIcon from '@mui/icons-material/Paid';
 import ArchitectureIcon from '@mui/icons-material/Architecture';
-import CodeIcon from '@mui/icons-material/Code';
 import GroupsIcon from '@mui/icons-material/Groups';
 import { calculateYearsOfExperience } from '@/utils/experience';
 
 const techStack = [
   'Python',
   'LLMs & Agents',
-  'RAG / Retrieval',
+  'LangGraph',
+  'LangChain',
+  'LiteLLM',
   'MCP',
+  'RAG + Retrieval Eval',
+  'Django',
+  'PostgreSQL',
+  'Redis / Celery',
+  'Jenkins / GitHub Actions',
   'TypeScript',
   'React',
-  'PostgreSQL',
-  'Redis',
-  'Celery',
   'AWS',
   'Docker',
 ];
 
+// Order follows the canonical positioning: Applied AI and Developer Experience / Platform
+// are co-equal primary pillars; Security and Fintech are spikes.
 const strengths = [
   {
     icon: PsychologyIcon,
     color: '#60a5fa',
-    title: 'Applied AI & Agentic Systems',
-    short: 'Build agent pipelines, retrieval systems, and AI developer tooling.',
+    title: 'Applied AI, Agents & Evals',
+    short: 'Agents on LangGraph, LangChain, and LiteLLM, measured with evals rather than vibes.',
     description:
-      'Agent pipelines, reusable skills, and MCP integrations at Marvell. Drove team adoption of Cursor, GitHub Copilot, and Claude Code across a DSP team. Currently building a hand-implemented retrieval engine (IVF, HNSW, product quantization) with an nDCG/MRR eval harness.',
+      'Agent pipelines, reusable skills, and MCP integrations at Marvell, with evals run on agent output. Built a Glean agent that routes Jenkins failures to their owners. Personally built an evaluated RAG assistant with hand-labeled sets, recall@k and MRR on every change.',
+  },
+  {
+    icon: ArchitectureIcon,
+    color: '#2dd4bf',
+    title: 'Developer Experience & Platforms',
+    short: 'CI cut from 19h to 2h; a 0-to-1 platform now with 150+ active users across business units.',
+    description:
+      'Built the HSSLab platform from scratch (Django, Celery + Redis workers scaled 5 to 25), cut CI from 19 hours to 2, shortened delivery from ~28 to 10 days, and led the Gerrit to GitHub Enterprise migration.',
   },
   {
     icon: SecurityIcon,
@@ -50,27 +63,12 @@ const strengths = [
       'Architected a Click-to-Pay / Digital Card Facilitator solution at merchant checkout scale, built Spring Boot payments microservices, and shipped a Flask + MongoDB service serving a risk-prediction model, plus ATM time-series forecasting at ~97% accuracy.',
   },
   {
-    icon: ArchitectureIcon,
-    color: '#2dd4bf',
-    title: 'Distributed Systems & Orchestration',
-    short: 'Celery/Redis job queues, batch simulation orchestration, CI cut from 19h to 2h.',
-    description:
-      'Scaled a Celery + Redis job queue from 5 to 25 workers, built Papermill-parameterized notebook pipelines for 224G 3nm simulation workloads, and cut CI runtime from 19 hours to 2 hours.',
-  },
-  {
-    icon: CodeIcon,
-    color: '#a78bfa',
-    title: 'Full-Stack & Cloud',
-    short: 'Production web systems with Python, React, PostgreSQL, and AWS.',
-    description:
-      'End-to-end development across UI, APIs, and data layers, deployed on AWS with Docker. Owned the HSSLab internal platform end-to-end, growing active users from ~30 to ~80.',
-  },
-  {
     icon: GroupsIcon,
     color: '#fb923c',
-    title: 'Leadership & Mentorship',
-    short: 'Led HCI research teams, taught CS courses, mentor through code reviews.',
-    description: 'Experience leading technical teams, teaching undergraduate courses, and mentoring junior engineers through design and code reviews.',
+    title: 'Embedded with Domain Teams',
+    short: 'Two years as the software engineer inside a SerDes/DSP team; led a 12-person research team.',
+    description:
+      'Embedded with hardware engineers across DSP, program management, and QA, shipping changes through demonstrated value rather than authority. Led HCI research development at Santa Clara and taught core CS courses.',
   },
 ];
 
@@ -130,12 +128,13 @@ export default function About({ isStandalone = false }: AboutProps) {
                 fontSize: { xs: '0.9375rem', md: '1rem' },
               }}
             >
-              <strong style={{ color: '#60a5fa' }}>Applied AI engineer</strong> and{' '}
-              <strong style={{ color: '#60a5fa' }}>Staff Software Engineer</strong> at Marvell
-              Technology, with <strong style={{ color: '#60a5fa' }}>{yearsOfExperience}+ years</strong>{' '}
-              spanning cybersecurity, fintech, and semiconductors, now building agentic systems,
-              AI developer tooling, and retrieval infrastructure. Master&apos;s in CS from Santa Clara
-              (4.0 GPA), where I led research and taught core courses.
+              <strong style={{ color: '#60a5fa' }}>Staff Software Engineer</strong> at Marvell Technology
+              building <strong style={{ color: '#60a5fa' }}>agentic systems</strong> and the{' '}
+              <strong style={{ color: '#60a5fa' }}>developer platforms</strong> engineering teams run
+              on, with <strong style={{ color: '#60a5fa' }}>{yearsOfExperience}+ years</strong> across
+              cybersecurity, fintech, and semiconductors. I ship agents on LangGraph, LangChain, and
+              LiteLLM and measure what I ship: evals on agent output at work, and hand-labeled eval
+              sets with recall@k and MRR on my own RAG system. Master&apos;s in CS from Santa Clara (4.0 GPA).
             </Typography>
 
             <Typography
@@ -158,9 +157,7 @@ export default function About({ isStandalone = false }: AboutProps) {
               <strong style={{ color: '#60a5fa' }}>payments</strong> experience. I bring both:
               SIEM threat detection and MITRE ATT&amp;CK mapping at Qualys, and Click-to-Pay /
               payments microservices and ML risk models at Opus. I write weekly on AI security:
-              supply-chain risk, agent hijacking, and inference-server attack surface. Distributed
-              systems work (Celery/Redis, batch simulation orchestration) and full-stack/cloud
-              delivery round out the toolset.
+              supply-chain risk, agent hijacking, and inference-server attack surface.
             </Typography>
 
             {/* Tech Stack Chips */}

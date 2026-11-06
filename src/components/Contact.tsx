@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import EmailIcon from '@mui/icons-material/Email';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import SendIcon from '@mui/icons-material/Send';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -263,7 +262,7 @@ export default function Contact() {
               Prefer email? Send a note or connect on LinkedIn.
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, fontSize: '0.875rem', lineHeight: 1.6 }}>
-              I'm always open to discussing new projects, creative ideas, or opportunities to collaborate on meaningful work.
+              I&apos;m always open to discussing new projects, creative ideas, or opportunities to collaborate on meaningful work.
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>

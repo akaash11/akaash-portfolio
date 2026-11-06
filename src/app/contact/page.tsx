@@ -8,7 +8,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: `Contact - ${siteConfig.author.name} | Get in Touch`,
-  description: `Get in touch with ${siteConfig.author.name}, Full Stack Engineer based in ${siteConfig.author.location}. Available for full-time opportunities, consulting, and collaboration. Connect via email, LinkedIn, GitHub, or Twitter.`,
+  description: `Get in touch with ${siteConfig.author.name}, Staff Software Engineer (applied AI and developer platforms) based in ${siteConfig.author.location}. Available for full-time opportunities, consulting, and collaboration. Connect via email, LinkedIn, GitHub, or Twitter.`,
   keywords: [
     'Contact Akaash Trivedi',
     'Hire Full Stack Engineer',

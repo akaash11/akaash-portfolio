@@ -28,6 +28,7 @@ const sections = [
   { path: '/about', id: 'about', label: 'About' },
   { path: '/experience', id: 'experience', label: 'Experience' },
   { path: '/projects', id: 'projects', label: 'Projects' },
+  { path: '/#writing', id: 'writing', label: 'Writing' },
   { path: '/contact', id: 'contact', label: 'Contact' },
 ];
 

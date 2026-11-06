@@ -74,7 +74,7 @@ export default function Error({
               lineHeight: 1.6,
             }}
           >
-            We encountered an unexpected error. This has been logged and we'll look into it.
+            We encountered an unexpected error. This has been logged and we&apos;ll look into it.
             You can try refreshing the page to continue.
           </Typography>
 

@@ -8,7 +8,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: `About - ${siteConfig.author.name} | Applied AI Engineer`,
-  description: `Learn about ${siteConfig.author.name}'s ${siteConfig.yearsOfExperience}+ years across cybersecurity, fintech, and semiconductors, now building agentic systems, AI developer tooling, and retrieval infrastructure at Marvell Technology.`,
+  description: `Learn about ${siteConfig.author.name}'s ${siteConfig.yearsOfExperience}+ years across cybersecurity, fintech, and semiconductors, now building agentic systems and developer platforms at Marvell Technology, with evals on what ships.`,
   keywords: [
     'About Akaash Trivedi',
     'Applied AI Engineer',

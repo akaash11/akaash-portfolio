@@ -5,6 +5,7 @@ import About from '@/components/About';
 import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
+import Writing from '@/components/Writing';
 import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import { Box } from '@mui/material';
@@ -61,6 +62,11 @@ export default function Home() {
         {/* Projects Section */}
         <Section id="projects" title="Projects" bgcolor="background.paper" compactPadding>
           <Projects />
+        </Section>
+
+        {/* Writing Section */}
+        <Section id="writing" title="Writing">
+          <Writing />
         </Section>
 
         {/* Contact Section */}

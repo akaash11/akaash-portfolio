@@ -17,44 +17,29 @@ export interface Project {
   badges?: string[]; // Multiple badges (takes precedence over badge if present)
   category?: ProjectCategory;
   featured?: boolean;
+  earlier?: boolean; // Older work, shown collapsed under "Earlier work" instead of the main carousel
+  year?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: 'retrieval-engine',
-    title: 'Retrieval Engine',
-    subtitle: 'Hand-Built Vector Search for an Agentic System',
+    id: 'knowledge-assistant',
+    title: 'Private RAG Assistant',
+    subtitle: 'Voice-first AI agent with evals and prompt-injection defenses',
     description:
-      'In progress: building and rigorously evaluating a retrieval system for an agent, implementing the index myself (IVF, HNSW, product quantization) rather than importing a vector DB, with an eval harness that scores chunking strategies on nDCG and MRR.',
+      'An AI assistant over my own notes that runs on hardware I control. Sensitive data never leaves the device, and every retrieval change is scored against hand-labeled evals before it ships.',
     highlights: [
-      'In progress: index layer (flat/exact kNN, IVF, HNSW, product quantization) implemented from scratch and benchmarked against FAISS',
-      'Eval harness scores chunking strategies with nDCG@k and MRR against a hand-labeled query set',
-      'LangGraph agent layer with citation-grounded output: every claim must cite a retrieved chunk, or the agent flags what evidence is missing',
-      'Concurrent serving API with P50/P95/P99 latency and recall@k tracking planned for a later milestone',
+      'Keeps sensitive notes on-device: 76/76 outbound requests clean across 172 adversarial and replayed questions',
+      'Hardened against prompt injection: 109/109 checks pass, with a quarantined no-tools model reading email',
+      'Raised recall@5 from 26/28 to 27/28 and MRR from 0.83 to 0.88 through chunking changes',
+      'Caught my own regression: a date filter lifted temporal MRR to 0.92 but leaked false premises, so I turned it off',
+      'Checks grounding in code: every number in an answer must appear in the cited source notes',
+      'Voice capture with local Whisper and Qwen3, plus a native iPhone app with Face ID sign-in',
     ],
-    technologies: ['Python', 'FAISS', 'LangGraph', 'NumPy', 'Prometheus', 'Grafana'],
-    badges: ['In Progress'],
+    technologies: ['Python', 'RAG', 'LLM Evals', 'Whisper', 'Qwen3', 'Local LLMs', 'Prompt-Injection Defense'],
+    badges: ['Evaluated'],
     category: 'ml',
     featured: true,
-  },
-  {
-    id: 'smar',
-    title: 'SMAR',
-    subtitle: 'Systematic Mobile Application Reviews',
-    description:
-      'HCI research tool that helps researchers analyze mobile app reviews at scale, delivering structured insights from Play Store data.',
-    highlights: [
-      '$174,555 National Science Foundation (NSF) award supporting the research.',
-      'Led development as HCI Research Team Lead at Santa Clara University',
-      'Built full-stack web application with React, MUI, and Node.js',
-      'Deployed on AWS (EC2, S3, Route 53) with Docker',
-      'Integrated Play Store scraping and data analysis pipelines',
-    ],
-    technologies: ['React', 'Material UI', 'Node.js', 'AWS', 'Docker', 'Python', 'Play Store API'],
-    liveLink: 'https://smar-tool.org',
-    githubLink: '',
-    badges: ['NSF Award $174,555'],
-    category: 'full-stack',
   },
   {
     id: 'linko-2248',
@@ -77,6 +62,40 @@ export const projects: Project[] = [
     category: 'mobile',
   },
   {
+    id: 'smar',
+    title: 'SMAR',
+    subtitle: 'Systematic Mobile Application Reviews',
+    description:
+      'HCI research tool that helps researchers analyze mobile app reviews at scale, delivering structured insights from Play Store data.',
+    highlights: [
+      '$174,555 National Science Foundation (NSF) award supporting the research.',
+      'Led development as HCI Research Team Lead at Santa Clara University',
+      'Built full-stack web application with React, MUI, and Node.js',
+      'Deployed on AWS (EC2, S3, Route 53) with Docker',
+      'Integrated Play Store scraping and data analysis pipelines',
+    ],
+    technologies: ['React', 'Material UI', 'Node.js', 'AWS', 'Docker', 'Python', 'Play Store API'],
+    liveLink: 'https://smar-tool.org',
+    badges: ['NSF Award $174,555'],
+    category: 'full-stack',
+  },
+  {
+    id: 'retrieval-engine',
+    title: 'Retrieval Engine',
+    subtitle: 'Evaluated, Grounded Retrieval for an Agentic System',
+    description:
+      'Planned, not yet built: a retrieval system for an agent, designed around an eval harness that scores chunking strategies on nDCG and MRR, and a LangGraph agent layer that must cite a retrieved chunk for every claim or admit it cannot answer.',
+    highlights: [
+      'Eval harness will score chunking strategies with nDCG@k and MRR against a hand-labeled query set, so retrieval quality is measured, not assumed.',
+      'LangGraph agent layer with citation-grounded output: every claim must cite a retrieved chunk, or the agent flags what evidence is missing.',
+      'Exact/flat retrieval baseline as the recall oracle for later index work.',
+      'Stretch goal: hand-built IVF, HNSW, and product-quantization index benchmarked against FAISS.',
+    ],
+    technologies: ['Python', 'FAISS', 'LangGraph', 'NumPy'],
+    badges: ['Planned'],
+    category: 'ml',
+  },
+  {
     id: 'eat-o-pia',
     title: 'Eatopia',
     subtitle: 'AI-Powered Meal Planning Assistant',
@@ -92,6 +111,8 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/ViralDam/CalHacks10',
     badge: 'Hackathon',
     category: 'ml',
+    earlier: true,
+    year: '2023',
   },
   {
     id: 'lets-not-wait',
@@ -109,5 +130,10 @@ export const projects: Project[] = [
     githubLink: 'https://github.com/mohanraj-cs/Inrix_hackathon',
     badge: 'Hackathon Winner',
     category: 'full-stack',
+    earlier: true,
+    year: '2023',
   },
 ];
+
+export const mainProjects = projects.filter((p) => !p.earlier);
+export const earlierProjects = projects.filter((p) => p.earlier);

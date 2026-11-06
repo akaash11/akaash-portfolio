@@ -20,7 +20,7 @@ export const siteConfig = {
   // Site metadata
   name: 'Akaash Trivedi Portfolio',
   title: 'Akaash Trivedi | Staff Software Engineer, Applied AI',
-  description: `Applied AI engineer with ${yearsOfExperience}+ years spanning cybersecurity, fintech, and semiconductors. Staff Software Engineer at Marvell Technology building agentic systems, AI developer tooling, and retrieval infrastructure, with a security background from Qualys (SIEM, MITRE ATT&CK) and fintech from Opus (Click-to-Pay, payments microservices).`,
+  description: `Staff Software Engineer at Marvell Technology building agentic systems, and the platforms and pipelines engineering teams run on, in regulated and security-sensitive environments. ${yearsOfExperience}+ years across cybersecurity (Qualys), fintech (Opus), and semiconductors. Agents on LangGraph, LangChain, and LiteLLM, measured with real evals.`,
   
   // Number of years of professional experience (kept for places that need the raw number)
   yearsOfExperience,
@@ -39,6 +39,7 @@ export const siteConfig = {
     linkedin: 'https://www.linkedin.com/in/akaash-trivedi',
     github: 'https://github.com/akaash11',
     twitter: 'https://twitter.com/akaasht',
+    playlinko: 'https://playlinko.com',
   },
   
   // OG Image (optimized version)

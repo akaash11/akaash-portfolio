@@ -34,55 +34,43 @@ export const metadata: Metadata = {
     shortcut: ["/icon.png"],
   },
   keywords: [
-    // Personal Brand
     "Akaash Trivedi",
     "Akaash Trivedi Portfolio",
-    // Roles & Titles (lead with applied AI)
+    "Staff Software Engineer",
     "Applied AI Engineer",
     "AI Engineer",
-    "Agentic Systems Engineer",
-    "AI Developer Tooling",
-    "Staff Software Engineer",
-    "Senior Software Engineer",
-    // AI Specializations
-    "Retrieval Augmented Generation",
-    "RAG Engineer",
-    "AI Security",
-    "LLM Engineering",
+    "Forward Deployed Engineer",
+    "Agentic Systems",
+    "AI Agents",
+    "LangGraph",
+    "LangChain",
+    "LiteLLM",
     "MCP",
-    // Security & Fintech spikes
+    "Retrieval Augmented Generation",
+    "RAG Evaluation",
+    "LLM Evals",
+    "Developer Experience",
+    "Developer Productivity",
+    "Platform Engineering",
+    "CI/CD",
+    "AI Security",
     "Application Security",
     "SIEM",
     "MITRE ATT&CK",
     "Fintech Engineering",
     "Payments Engineering",
-    // Secondary: Distributed systems & full-stack
     "Distributed Systems",
-    "Cloud Architecture",
-    "API Development",
-    "System Design",
-    "Microservices",
-    "Python Developer",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "PostgreSQL",
+    "Python",
+    "Django",
+    "Celery",
     "Redis",
-    "AWS",
+    "PostgreSQL",
     "Docker",
-    // Location-based
-    "Software Engineer New York",
-    // Companies & Education
+    "AWS",
     "Marvell Technology",
     "Qualys",
     "Santa Clara University",
-    // Research & Achievements
-    "HCI Research",
-    "NSF SBIR",
-    // Technical Skills
-    "REST API",
-    "GraphQL",
-    "CI/CD",
+    "Software Engineer New York",
   ],
   authors: [{ name: siteConfig.author.name, url: siteConfig.social.linkedin }],
   creator: siteConfig.author.name,
@@ -172,12 +160,14 @@ export default function RootLayout({
 
   // Structured data for SEO (JSON-LD)
   // Note: Email removed to prevent bot scraping
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const person = {
     "@type": "Person",
+    "@id": `${siteConfig.url}/#person`,
     name: siteConfig.author.name,
-    jobTitle: siteConfig.author.title,
+    jobTitle: "Staff Software Engineer",
+    description: siteConfig.description,
     url: siteConfig.url,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
     sameAs: [
       siteConfig.social.linkedin,
       siteConfig.social.github,
@@ -188,15 +178,47 @@ export default function RootLayout({
       addressLocality: siteConfig.author.location,
       addressCountry: "US",
     },
-    alumniOf: {
-      "@type": "Organization",
-      name: "Santa Clara University",
-    },
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Santa Clara University" },
+      { "@type": "CollegeOrUniversity", name: "Vishwakarma Institute of Technology" },
+    ],
     worksFor: {
       "@type": "Organization",
       name: "Marvell Technology",
+      url: "https://www.marvell.com/",
     },
+    knowsAbout: [
+      "Applied AI",
+      "AI agents",
+      "Agentic systems",
+      "LangGraph",
+      "LangChain",
+      "LiteLLM",
+      "Model Context Protocol",
+      "Retrieval-augmented generation",
+      "Retrieval evaluation",
+      "Developer experience",
+      "Platform engineering",
+      "CI/CD",
+      "AI security",
+      "Application security",
+      "SIEM",
+      "MITRE ATT&CK",
+      "Payments engineering",
+      "Distributed systems",
+      "Python",
+      "Django",
+    ],
     hasOccupation,
+  };
+
+  // ProfilePage tells search and answer engines this site is about one person.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: siteConfig.url,
+    name: siteConfig.title,
+    mainEntity: person,
   };
 
   return (
