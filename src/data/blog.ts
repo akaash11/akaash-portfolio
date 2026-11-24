@@ -3,6 +3,7 @@ export interface BlogPost {
   title: string;
   date: string; // ISO yyyy-mm-dd
   summary: string;
+  tags: string[]; // Drives filters, meta keywords, JSON-LD and llms.txt
 }
 
 export const blogPosts: BlogPost[] = [
@@ -12,6 +13,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-11-23',
     summary:
       'How I built a guard that stops a shopping agent from being fooled: signed intent, deterministic checks before model checks, and a red-team eval where 0 of 23 attacks got through.',
+    tags: ['Agent security', 'Prompt injection', 'Agentic AI', 'Payments', 'LLM evals', 'Gemini'],
   },
 ];
 

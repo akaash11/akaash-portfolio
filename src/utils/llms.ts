@@ -84,9 +84,9 @@ function experienceSection(full: boolean): string {
 
 function writingSection(): string {
   const lines = ['## Writing', '', '### Long reads on this site', ''];
-  blogPosts.forEach((b) => lines.push(`- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary}`));
+  blogPosts.forEach((b) => lines.push(`- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary} Topics: ${b.tags.join(', ')}.`));
   lines.push('', '### LinkedIn (AI security)', '');
-  writing.forEach((w) => lines.push(`- [${w.title}](${w.url}) (${w.date}): ${w.summary}`));
+  writing.forEach((w) => lines.push(`- [${w.title}](${w.url}) (${w.date}): ${w.summary} Topics: ${w.tags.join(', ')}.`));
   lines.push(`- [All posts](${linkedinPostsUrl})`, '');
   return lines.join('\n');
 }

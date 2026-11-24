@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | ${siteConfig.author.name}`,
     description: post.summary,
+    keywords: post.tags,
     openGraph: {
       title: post.title,
       description: post.summary,
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       publishedTime: post.date,
       authors: [siteConfig.author.name],
+      tags: post.tags,
     },
     alternates: { canonical: url },
   };
@@ -50,6 +52,8 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     description: post.summary,
     datePublished: post.date,
+    keywords: post.tags.join(', '),
+    articleSection: post.tags[0],
     author: { '@id': `${siteConfig.url}/#person` },
     mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
   };
