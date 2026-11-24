@@ -59,6 +59,14 @@ export default function Navbar() {
       // Handle scroll trigger for navbar background
       setScrolled(window.scrollY > 50);
 
+      // A short last section (Contact) can never reach the spy line, so at the very
+      // bottom of the page the last section that exists on the homepage is active.
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atBottom) {
+        setActiveSection(sections[sections.length - 1].id);
+        return;
+      }
+
       // Handle active section on homepage
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i].id);
