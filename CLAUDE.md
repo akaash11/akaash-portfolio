@@ -29,6 +29,10 @@ Akaash's public site at **akaash.app**. Next.js 16 App Router + MUI, auto-deploy
 - Bullets: one idea each, outcome in the first eight words, 20–30 words.
 - **Never commit** `PROMPT-*.md` working files — they're gitignored and live in
   `brain2/60_Projects/prompts/`.
+- **Alternate section backgrounds on the homepage** (black, grey `background.paper`, black, ...). Never two
+  neighbours the same. Order lives in `src/app/page.tsx`.
+- **Every post has `tags`** (`src/data/blog.ts`, `src/data/writing.ts`): 3 to 6 specific terms, reuse
+  existing tags first. They feed filters, article meta and JSON-LD, and `llms.txt`.
 - Verify `npm run build` and `npm run lint` pass before finishing.
 
 Working prompts for this repo: `~/Desktop/Projects/brain2/60_Projects/prompts/`
