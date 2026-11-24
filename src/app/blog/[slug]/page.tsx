@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import Link from 'next/link';
 import { Box, Chip, Container, Stack, Typography } from '@mui/material';
 import Navbar from '@/components/Navbar';
@@ -9,6 +7,7 @@ import Footer from '@/components/Footer';
 import BlogPostBody from '@/components/BlogPost';
 import { siteConfig } from '@/config/site';
 import { blogPosts, getPost } from '@/data/blog';
+import { readPostMarkdown } from '@/utils/blog';
 
 export const dynamicParams = false;
 
@@ -33,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       authors: [siteConfig.author.name],
       tags: post.tags,
     },
@@ -45,13 +45,18 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
-  const markdown = readFileSync(path.join(process.cwd(), 'src/content/blog', `${post.slug}.md`), 'utf8');
+  const markdown = readPostMarkdown(post.slug);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.summary,
     datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    inLanguage: 'en-US',
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    publisher: { '@id': `${siteConfig.url}/#person` },
+    isPartOf: { '@type': 'Blog', name: `${siteConfig.author.name}: Writing`, url: `${siteConfig.url}/#writing` },
     keywords: post.tags.join(', '),
     articleSection: post.tags[0],
     author: { '@id': `${siteConfig.url}/#person` },

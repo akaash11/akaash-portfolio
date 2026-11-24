@@ -3,6 +3,7 @@
  * plain-text summary that LLM crawlers read can never drift from the visible pages.
  * Spec: https://llmstxt.org
  */
+import { readPostMarkdown } from '@/utils/blog';
 import { siteConfig } from '@/config/site';
 import { experiences } from '@/data/experience';
 import { mainProjects, earlierProjects } from '@/data/projects';
@@ -91,10 +92,31 @@ function writingSection(): string {
   return lines.join('\n');
 }
 
+/** Full text of each long read, headings demoted under the post title, for llms-full.txt. */
+function longReadsFullText(): string {
+  const lines = ['## Long reads (full text)', ''];
+  for (const b of blogPosts) {
+    const body = readPostMarkdown(b.slug)
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt: string, src: string) => `[Diagram: ${alt}] (${u(src)})`)
+      .replace(/^(#{2,5}) /gm, (_m, h: string) => `${h}## `);
+    lines.push(
+      `### ${b.title}`,
+      '',
+      `URL: ${u(`/blog/${b.slug}`)}`,
+      `Published: ${b.date}${b.updated ? ` (updated ${b.updated})` : ''}`,
+      `Topics: ${b.tags.join(', ')}`,
+      '',
+      body.trim(),
+      '',
+    );
+  }
+  return lines.join('\n');
+}
+
 export function buildLlmsTxt(): string {
   return [header(), links(), projectsSection(false), experienceSection(false), writingSection()].join('\n');
 }
 
 export function buildLlmsFullTxt(): string {
-  return [header(), links(), projectsSection(true), experienceSection(true), writingSection()].join('\n');
+  return [header(), links(), projectsSection(true), experienceSection(true), writingSection(), longReadsFullText()].join('\n');
 }

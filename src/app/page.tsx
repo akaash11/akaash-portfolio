@@ -9,6 +9,35 @@ import Writing from '@/components/Writing';
 import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import { Box } from '@mui/material';
+import { siteConfig } from '@/config/site';
+import { blogPosts } from '@/data/blog';
+import { writing } from '@/data/writing';
+
+// Writing as a Blog entity: long reads on this site plus LinkedIn posts, with tags as keywords.
+const writingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${siteConfig.url}/#writing`,
+  name: `${siteConfig.author.name}: Writing`,
+  url: `${siteConfig.url}/#writing`,
+  author: { '@id': `${siteConfig.url}/#person` },
+  blogPost: [
+    ...blogPosts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `${siteConfig.url}/blog/${p.slug}`,
+      datePublished: p.date,
+      keywords: p.tags.join(', '),
+    })),
+    ...writing.map((p) => ({
+      '@type': 'SocialMediaPosting',
+      headline: p.title,
+      url: p.url,
+      datePublished: p.date,
+      keywords: p.tags.join(', '),
+    })),
+  ],
+};
 
 // Note: these were previously loaded via next/dynamic(..., { loading: () => null })
 // to lazy-load below-the-fold sections. That pattern renders `null` for the
@@ -42,6 +71,7 @@ import { Box } from '@mui/material';
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(writingJsonLd) }} />
       <Navbar />
       <Box component="main">
         {/* Home Section */}

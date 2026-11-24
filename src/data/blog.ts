@@ -2,6 +2,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string; // ISO yyyy-mm-dd
+  updated?: string; // ISO yyyy-mm-dd, set when the post is materially edited
   summary: string;
   tags: string[]; // Drives filters, meta keywords, JSON-LD and llms.txt
 }
