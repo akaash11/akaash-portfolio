@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 import SendIcon from '@mui/icons-material/Send';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { track } from '@/utils/analytics';
@@ -354,13 +354,13 @@ export default function Contact() {
                 <OpenInNewIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
               </ButtonBase>
 
-              {/* Twitter */}
+              {/* X */}
               <ButtonBase
                 component="a"
-                href="https://twitter.com/akaasht"
+                href="https://x.com/akaasht"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Visit Twitter profile"
+                aria-label="Visit X profile"
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -385,11 +385,11 @@ export default function Contact() {
                     bgcolor: 'action.selected',
                   }}
                 >
-                  <TwitterIcon sx={{ fontSize: 20, color: 'text.primary' }} />
+                  <XIcon sx={{ fontSize: 20, color: 'text.primary' }} />
                 </Box>
                 <Box sx={{ flex: 1, textAlign: 'left' }}>
                   <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
-                    Twitter
+                    X
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
                     @akaasht

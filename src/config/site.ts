@@ -38,7 +38,7 @@ export const siteConfig = {
   social: {
     linkedin: 'https://www.linkedin.com/in/akaash-trivedi',
     github: 'https://github.com/akaash11',
-    twitter: 'https://twitter.com/akaasht',
+    twitter: 'https://x.com/akaasht',
     playlinko: 'https://playlinko.com',
   },
   

@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import XIcon from '@mui/icons-material/X';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -89,7 +89,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             component="a"
-            href="https://twitter.com/akaasht"
+            href="https://x.com/akaasht"
             target="_blank"
             rel="noopener noreferrer"
             size="small"
@@ -97,9 +97,9 @@ export default function Footer() {
               color: 'text.secondary',
               '&:hover': { color: 'text.primary', bgcolor: 'action.hover' },
             }}
-            aria-label="Twitter"
+            aria-label="X"
           >
-            <TwitterIcon fontSize="small" />
+            <XIcon fontSize="small" />
           </IconButton>
         </Box>
       </Box>
