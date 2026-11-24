@@ -34,6 +34,7 @@ function links(): string {
     `- [About](${u('/about')}): background and strengths`,
     `- [Experience](${u('/experience')}): full work, research, teaching, and education history`,
     `- [Projects](${u('/projects')}): selected projects with measured results`,
+    `- [Writing](${u('/writing')}): long reads and LinkedIn posts, filterable by topic`,
     `- [Contact](${u('/contact')}): contact form`,
     `- [Full text for LLMs](${u('/llms-full.txt')}): every role and project in one file`,
     '',
@@ -85,7 +86,7 @@ function experienceSection(full: boolean): string {
 
 function writingSection(): string {
   const lines = ['## Writing', '', '### Long reads on this site', ''];
-  blogPosts.forEach((b) => lines.push(`- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary} Topics: ${b.tags.join(', ')}.`));
+  blogPosts.forEach((b) => lines.push(`- [${b.title}](${u(`/writing/${b.slug}`)}) (${b.date}): ${b.summary} Topics: ${b.tags.join(', ')}.`));
   lines.push('', '### LinkedIn', '');
   [...writing].sort((a, b) => b.date.localeCompare(a.date)).forEach((w) => lines.push(`- [${w.title}](${w.url}) (${w.date}): ${w.summary} Topics: ${w.tags.join(', ')}.`));
   lines.push(`- [All posts](${linkedinPostsUrl})`, '');
@@ -102,7 +103,7 @@ function longReadsFullText(): string {
     lines.push(
       `### ${b.title}`,
       '',
-      `URL: ${u(`/blog/${b.slug}`)}`,
+      `URL: ${u(`/writing/${b.slug}`)}`,
       `Published: ${b.date}${b.updated ? ` (updated ${b.updated})` : ''}`,
       `Topics: ${b.tags.join(', ')}`,
       '',

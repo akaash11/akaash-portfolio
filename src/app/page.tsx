@@ -25,7 +25,7 @@ const writingJsonLd = {
     ...blogPosts.map((p) => ({
       '@type': 'BlogPosting',
       headline: p.title,
-      url: `${siteConfig.url}/blog/${p.slug}`,
+      url: `${siteConfig.url}/writing/${p.slug}`,
       datePublished: p.date,
       keywords: p.tags.join(', '),
     })),

@@ -112,8 +112,8 @@ export default function Navbar() {
   };
 
   const isActive = (section: typeof sections[0]) => {
-    // Long reads under /blog belong to the Writing section.
-    if (section.id === 'writing' && pathname.startsWith('/blog')) return true;
+    // Long reads under /writing belong to the Writing section.
+    if (section.id === 'writing' && pathname.startsWith('/writing')) return true;
     if (isHomepage) {
       return activeSection === section.id;
     } else {

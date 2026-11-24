@@ -56,7 +56,7 @@ export const projects: Project[] = [
     ],
     technologies: ['Gemini 4 Neon', 'Antigravity', 'Shop MCP', 'Python', 'Ed25519', 'Prompt-Injection Defense'],
     githubLink: 'https://github.com/akaash11/tripwire',
-    postLink: '/blog/tripwire',
+    postLink: '/writing/tripwire',
     badges: ['Hackathon', 'Evaluated'],
     category: 'ml',
     featured: true,

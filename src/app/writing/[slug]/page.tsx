@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  const url = `${siteConfig.url}/blog/${post.slug}`;
+  const url = `${siteConfig.url}/writing/${post.slug}`;
   return {
     title: `${post.title} | ${siteConfig.author.name}`,
     description: post.summary,
@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: Props) {
     keywords: post.tags.join(', '),
     articleSection: post.tags[0],
     author: { '@id': `${siteConfig.url}/#person` },
-    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
+    mainEntityOfPage: `${siteConfig.url}/writing/${post.slug}`,
   };
 
   return (
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
       <Box component="main" sx={{ pt: { xs: 12, md: 14 }, pb: 8 }}>
         <Container maxWidth={false} sx={{ maxWidth: 760 }}>
           <Typography component="p" variant="body2" sx={{ mb: 2 }}>
-            <Link href="/#writing" style={{ color: 'inherit' }}>
+            <Link href="/writing" style={{ color: 'inherit' }}>
               &larr; Back to Writing
             </Link>
           </Typography>

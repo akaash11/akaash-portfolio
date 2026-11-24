@@ -168,7 +168,7 @@ export default function Writing() {
                 variant="outlined"
                 sx={{ bgcolor: 'background.paper', borderColor: 'primary.main', '&:hover': { borderColor: 'primary.light' } }}
               >
-                <CardActionArea component={Link} href={`/blog/${post.slug}`} sx={{ display: 'block' }}>
+                <CardActionArea component={Link} href={`/writing/${post.slug}`} sx={{ display: 'block' }}>
                   <CardContent sx={{ p: { xs: 2.5, md: 4 } }}>
                     <Typography
                       variant="caption"

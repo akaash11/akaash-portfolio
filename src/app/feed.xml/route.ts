@@ -11,7 +11,7 @@ const rfc822 = (iso: string) => new Date(`${iso}T12:00:00Z`).toUTCString();
 /** RSS 2.0 feed of long reads and LinkedIn posts, newest first. Tags become <category>. */
 export function GET() {
   const items = [
-    ...blogPosts.map((p) => ({ title: p.title, link: `${siteConfig.url}/blog/${p.slug}`, date: p.date, summary: p.summary, tags: p.tags })),
+    ...blogPosts.map((p) => ({ title: p.title, link: `${siteConfig.url}/writing/${p.slug}`, date: p.date, summary: p.summary, tags: p.tags })),
     ...writing.map((p) => ({ title: p.title, link: p.url, date: p.date, summary: p.summary, tags: p.tags })),
   ].sort((a, b) => b.date.localeCompare(a.date));
 

@@ -9,9 +9,13 @@ const nextConfig: NextConfig = {
     } : false,
   },
   
-  // The blog index was merged into the homepage Writing section.
+  // Posts moved from /blog to /writing; keep old links (LinkedIn, Medium, crawlers) working.
   async redirects() {
-    return [{ source: '/blog', destination: '/#writing', permanent: false }];
+    return [
+      { source: '/blog', destination: '/writing', permanent: true },
+      { source: '/blog/:slug', destination: '/writing/:slug', permanent: true },
+      { source: '/blog/:slug/:file', destination: '/writing/:slug/:file', permanent: true },
+    ];
   },
 
   // Optimize production builds

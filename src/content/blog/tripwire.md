@@ -90,7 +90,7 @@ The rest of the Google stack:
 
 ## Architecture
 
-![Architecture flow. A voice note and photo from an iPhone Shortcut or web page go to Gemini 4 Neon, which compiles a signed Intent Contract. An Antigravity managed agent with two tools, search and ask to buy, searches Shop MCP, which quotes the top 5 results in parallel on delivery and delivered total. When the agent asks to buy, the Tripwire guard runs five checks: policy rules with no AI, a canary token, the Decisions API per clause, a Neon second opinion, and a final checkout check. The guard either blocks with a plain-English reason and nothing bought, or sends approve-or-ask to your live page with an X-ray, Approve and Raise budget. Approve sends you to the merchant's own Shop checkout, where you pay.](/blog/tripwire/architecture.svg)
+![Architecture flow. A voice note and photo from an iPhone Shortcut or web page go to Gemini 4 Neon, which compiles a signed Intent Contract. An Antigravity managed agent with two tools, search and ask to buy, searches Shop MCP, which quotes the top 5 results in parallel on delivery and delivered total. When the agent asks to buy, the Tripwire guard runs five checks: policy rules with no AI, a canary token, the Decisions API per clause, a Neon second opinion, and a final checkout check. The guard either blocks with a plain-English reason and nothing bought, or sends approve-or-ask to your live page with an X-ray, Approve and Raise budget. Approve sends you to the merchant's own Shop checkout, where you pay.](/writing/tripwire/architecture.svg)
 
 | Trust boundary | Who's on each side | What crosses it |
 |---|---|---|
