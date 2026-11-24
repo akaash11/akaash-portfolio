@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import Link from 'next/link';
 import { Box, Container, Typography } from '@mui/material';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -59,6 +60,11 @@ export default async function BlogPostPage({ params }: Props) {
       <Navbar />
       <Box component="main" sx={{ pt: { xs: 12, md: 14 }, pb: 8 }}>
         <Container maxWidth={false} sx={{ maxWidth: 760 }}>
+          <Typography component="p" variant="body2" sx={{ mb: 2 }}>
+            <Link href="/#writing" style={{ color: 'inherit' }}>
+              &larr; Back to Writing
+            </Link>
+          </Typography>
           <Typography variant="caption" color="text.secondary">
             {new Date(`${post.date}T00:00:00`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>

@@ -33,8 +33,6 @@ function links(): string {
     `- [About](${u('/about')}): background and strengths`,
     `- [Experience](${u('/experience')}): full work, research, teaching, and education history`,
     `- [Projects](${u('/projects')}): selected projects with measured results`,
-    `- [Blog](${u('/blog')}): write-ups on building and evaluating agentic systems`,
-    ...blogPosts.map((b) => `- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary}`),
     `- [Contact](${u('/contact')}): contact form`,
     `- [Full text for LLMs](${u('/llms-full.txt')}): every role and project in one file`,
     '',
@@ -85,7 +83,9 @@ function experienceSection(full: boolean): string {
 }
 
 function writingSection(): string {
-  const lines = ['## Writing (LinkedIn, AI security)', ''];
+  const lines = ['## Writing', '', '### Long reads on this site', ''];
+  blogPosts.forEach((b) => lines.push(`- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary}`));
+  lines.push('', '### LinkedIn (AI security)', '');
   writing.forEach((w) => lines.push(`- [${w.title}](${w.url}) (${w.date}): ${w.summary}`));
   lines.push(`- [All posts](${linkedinPostsUrl})`, '');
   return lines.join('\n');

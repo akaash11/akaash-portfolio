@@ -3,7 +3,9 @@
 import React from 'react';
 import { Box, Button, Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Link from 'next/link';
 import { writing, linkedinPostsUrl } from '@/data/writing';
+import { blogPosts } from '@/data/blog';
 
 function formatDate(iso: string) {
   const [y, m] = iso.split('-').map(Number);
@@ -21,8 +23,9 @@ export default function Writing() {
         variant="body1"
         sx={{ color: 'text.secondary', textAlign: 'center', maxWidth: 640, mx: 'auto', mb: 4 }}
       >
-        I write weekly on LinkedIn about AI security: prompt injection, agent hijacking, supply-chain
-        attacks, and the attack surface of inference infrastructure.
+        Long reads on building and evaluating agentic systems live here. I also write weekly on LinkedIn
+        about AI security: prompt injection, agent hijacking, supply-chain attacks, and the attack surface
+        of inference infrastructure.
       </Typography>
 
       <Box
@@ -32,6 +35,35 @@ export default function Writing() {
           gap: 2,
         }}
       >
+        {blogPosts.map((post) => (
+          <Card
+            key={post.slug}
+            variant="outlined"
+            sx={{ bgcolor: 'background.paper', borderColor: 'primary.main', '&:hover': { borderColor: 'primary.light' } }}
+          >
+            <CardActionArea component={Link} href={`/blog/${post.slug}`} sx={{ height: '100%', alignItems: 'stretch' }}>
+              <CardContent sx={{ p: 2.5 }}>
+                <Typography
+                  variant="caption"
+                  component="p"
+                  sx={{ color: 'primary.main', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', mb: 1 }}
+                >
+                  Long read · <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </Typography>
+                <Typography
+                  variant="h6"
+                  component="h3"
+                  sx={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.35, mb: 1, color: 'text.primary' }}
+                >
+                  {post.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.8125rem' }}>
+                  {post.summary}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))}
         {writing.map((post) => (
           <Card
             key={post.url}

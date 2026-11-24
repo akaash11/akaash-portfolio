@@ -23,13 +23,12 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { ThemeModeContext } from './ThemeRegistry';
 
-const sections: { path: string; id: string; label: string; routeOnly?: boolean }[] = [
+const sections = [
   { path: '/', id: 'home', label: 'Home' },
   { path: '/about', id: 'about', label: 'About' },
   { path: '/experience', id: 'experience', label: 'Experience' },
   { path: '/projects', id: 'projects', label: 'Projects' },
   { path: '/#writing', id: 'writing', label: 'Writing' },
-  { path: '/blog', id: 'blog', label: 'Blog', routeOnly: true },
   { path: '/contact', id: 'contact', label: 'Contact' },
 ];
 
@@ -92,11 +91,8 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  // Scroll-to-section only applies to sections that live on the homepage.
-  const scrolls = (section: typeof sections[0]) => isHomepage && !section.routeOnly;
-
   const handleNavClick = (section: typeof sections[0], e: React.MouseEvent) => {
-    if (scrolls(section)) {
+    if (isHomepage) {
       // On homepage: scroll to section
       e.preventDefault();
       scrollToSection(section.id);
@@ -108,9 +104,8 @@ export default function Navbar() {
   };
 
   const isActive = (section: typeof sections[0]) => {
-    if (section.routeOnly) {
-      return pathname === section.path || pathname.startsWith(`${section.path}/`);
-    }
+    // Long reads under /blog belong to the Writing section.
+    if (section.id === 'writing' && pathname.startsWith('/blog')) return true;
     if (isHomepage) {
       return activeSection === section.id;
     } else {
@@ -136,8 +131,8 @@ export default function Navbar() {
         {sections.map((section) => (
           <ListItem key={section.id} disablePadding>
             <ListItemButton
-              component={scrolls(section) ? 'button' : Link}
-              href={scrolls(section) ? undefined : section.path}
+              component={isHomepage ? 'button' : Link}
+              href={isHomepage ? undefined : section.path}
               onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
               selected={isActive(section)}
               aria-label={`Navigate to ${section.label}`}
@@ -193,8 +188,8 @@ export default function Navbar() {
             {sections.map((section) => (
               <Button
                 key={section.id}
-                component={scrolls(section) ? 'button' : Link}
-                href={scrolls(section) ? undefined : section.path}
+                component={isHomepage ? 'button' : Link}
+                href={isHomepage ? undefined : section.path}
                 onClick={(e: React.MouseEvent) => handleNavClick(section, e)}
                 aria-current={isActive(section) ? 'page' : undefined}
                 aria-label={`Navigate to ${section.label}`}

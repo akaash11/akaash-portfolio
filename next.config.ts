@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
     } : false,
   },
   
+  // The blog index was merged into the homepage Writing section.
+  async redirects() {
+    return [{ source: '/blog', destination: '/#writing', permanent: false }];
+  },
+
   // Optimize production builds
   productionBrowserSourceMaps: false, // Disable source maps for faster builds and smaller bundle
 };
