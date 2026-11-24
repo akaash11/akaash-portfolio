@@ -70,7 +70,7 @@ export default function Home() {
         </Section>
 
         {/* Contact Section */}
-        <Section id="contact" title="Contact" compactPadding>
+        <Section id="contact" title="Contact" bgcolor="background.paper" compactPadding>
           <Contact />
         </Section>
       </Box>

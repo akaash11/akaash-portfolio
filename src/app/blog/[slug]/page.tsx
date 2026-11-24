@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import Link from 'next/link';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Chip, Container, Stack, Typography } from '@mui/material';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogPostBody from '@/components/BlogPost';
@@ -75,6 +75,11 @@ export default async function BlogPostPage({ params }: Props) {
           <Typography variant="h1" sx={{ fontWeight: 700, fontSize: { xs: '1.9rem', md: '2.6rem' }, lineHeight: 1.2, mt: 1, mb: 3 }}>
             {post.title}
           </Typography>
+          <Stack direction="row" useFlexGap flexWrap="wrap" sx={{ gap: 1, mb: 3 }} aria-label="Topics">
+            {post.tags.map((t) => (
+              <Chip key={t} label={t} size="small" variant="outlined" />
+            ))}
+          </Stack>
           <BlogPostBody markdown={markdown} />
         </Container>
       </Box>
