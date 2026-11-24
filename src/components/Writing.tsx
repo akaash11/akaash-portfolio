@@ -116,9 +116,7 @@ export default function Writing() {
         variant="body1"
         sx={{ color: 'text.secondary', textAlign: 'center', maxWidth: 640, mx: 'auto', mb: 3 }}
       >
-        Long reads on building and evaluating agentic systems live here. I also write weekly on LinkedIn
-        about AI security: prompt injection, agent hijacking, supply-chain attacks, and the attack surface
-        of inference infrastructure.
+        Long reads here, and weekly AI security posts on LinkedIn.
       </Typography>
 
       {/* Topic filters. Scrolls sideways on phones instead of wrapping into many rows. */}
