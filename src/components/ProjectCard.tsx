@@ -13,6 +13,7 @@ import {
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CodeIcon from '@mui/icons-material/Code';
+import ArticleIcon from '@mui/icons-material/Article';
 import AppleIcon from '@mui/icons-material/Apple';
 import AndroidIcon from '@mui/icons-material/Android';
 import { Project } from '@/data/projects';
@@ -203,6 +204,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Action Buttons */}
         <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 'auto', gap: 1 }}>
+          {project.postLink && (
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<ArticleIcon fontSize="small" />}
+              href={project.postLink}
+              aria-label={`Read the ${project.title} write-up`}
+              sx={{ textTransform: 'none', fontWeight: 600, fontSize: '0.8125rem' }}
+            >
+              Read the write-up
+            </Button>
+          )}
           {primaryLink && (
             <Button
               variant="contained"

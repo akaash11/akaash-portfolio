@@ -9,6 +9,7 @@ export interface Project {
   technologies: string[];
   liveLink?: string;
   githubLink?: string;
+  postLink?: string; // Internal link to a write-up on this site
   devpostLink?: string;
   appStoreLink?: string;
   playStoreLink?: string;
@@ -38,6 +39,25 @@ export const projects: Project[] = [
     ],
     technologies: ['Python', 'RAG', 'LLM Evals', 'Whisper', 'Qwen3', 'Local LLMs', 'Prompt-Injection Defense'],
     badges: ['Evaluated'],
+    category: 'ml',
+    featured: true,
+  },
+  {
+    id: 'tripwire',
+    title: 'Tripwire',
+    subtitle: 'Payment firewall for AI shopping agents',
+    description:
+      'Built at the Gemini 4 NYC hackathon: say what you want and snap a photo, and an agent shops real Shopify stores while a guard stops anything fishy before money moves.',
+    highlights: [
+      'Blocked 23 of 23 attacks in a 35-case live red-team eval, where a rules-only baseline let 10 of 23 through',
+      'Compiles voice and photo into a signed Ed25519 intent contract with Gemini 4 Neon, so the agent holds capability, not authority',
+      'Checks deterministic rules before model checks, and re-reads the live delivered price from Shop, so a $3.49 item surfaced as $14.15',
+      'Fails closed: the human pays on the merchant checkout after seeing why, and Tripwire never completes a payment',
+    ],
+    technologies: ['Gemini 4 Neon', 'Antigravity', 'Shop MCP', 'Python', 'Ed25519', 'Prompt-Injection Defense'],
+    githubLink: 'https://github.com/akaash11/tripwire',
+    postLink: '/blog/tripwire',
+    badges: ['Hackathon', 'Evaluated'],
     category: 'ml',
     featured: true,
   },

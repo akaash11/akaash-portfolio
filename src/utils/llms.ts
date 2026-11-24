@@ -6,6 +6,7 @@
 import { siteConfig } from '@/config/site';
 import { experiences } from '@/data/experience';
 import { mainProjects, earlierProjects } from '@/data/projects';
+import { blogPosts } from '@/data/blog';
 import { writing, linkedinPostsUrl } from '@/data/writing';
 
 const u = (path: string) => `${siteConfig.url}${path}`;
@@ -32,6 +33,8 @@ function links(): string {
     `- [About](${u('/about')}): background and strengths`,
     `- [Experience](${u('/experience')}): full work, research, teaching, and education history`,
     `- [Projects](${u('/projects')}): selected projects with measured results`,
+    `- [Blog](${u('/blog')}): write-ups on building and evaluating agentic systems`,
+    ...blogPosts.map((b) => `- [${b.title}](${u(`/blog/${b.slug}`)}) (${b.date}): ${b.summary}`),
     `- [Contact](${u('/contact')}): contact form`,
     `- [Full text for LLMs](${u('/llms-full.txt')}): every role and project in one file`,
     '',
