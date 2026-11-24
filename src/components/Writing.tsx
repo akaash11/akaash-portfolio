@@ -61,9 +61,11 @@ export default function Writing() {
 
   const matches = (tags: string[]) => !activeTag || tags.includes(activeTag);
   const longReads = blogPosts.filter((p) => matches(p.tags));
-  const linkedin = writing.filter((p) => matches(p.tags));
-  // While filtering, show every match; otherwise cap at two rows with a toggle.
-  const limit = activeTag || expanded ? linkedin.length : VISIBLE_LINKEDIN;
+  const linkedin = writing
+    .filter((p) => matches(p.tags))
+    .sort((a, b) => b.date.localeCompare(a.date));
+  // Always two rows of three; "Show all" reveals the rest, filtered or not.
+  const limit = expanded ? linkedin.length : VISIBLE_LINKEDIN;
   const shown = linkedin.slice(0, limit);
   const rest = linkedin.slice(limit);
 
@@ -116,7 +118,7 @@ export default function Writing() {
         variant="body1"
         sx={{ color: 'text.secondary', textAlign: 'center', maxWidth: 640, mx: 'auto', mb: 3 }}
       >
-        Long reads here, and weekly AI security posts on LinkedIn.
+        Long reads here, and weekly posts on LinkedIn.
       </Typography>
 
       {/* Topic filters. Scrolls sideways on phones instead of wrapping into many rows. */}
@@ -206,7 +208,7 @@ export default function Writing() {
           <Box sx={{ ...grid, mt: 1 }}>{shown.map(linkedinCard)}</Box>
           {rest.length > 0 && (
             // Hidden, not unmounted: collapsed posts stay in the HTML for crawlers.
-            <Box hidden sx={{ ...grid, mt: 2 }}>{rest.map(linkedinCard)}</Box>
+            <Box sx={{ ...grid, mt: 2, display: 'none' }}>{rest.map(linkedinCard)}</Box>
           )}
         </Box>
       )}
@@ -216,14 +218,14 @@ export default function Writing() {
       )}
 
       <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ mt: 4, gap: 2, justifyContent: 'center' }}>
-        {!activeTag && writing.length > VISIBLE_LINKEDIN && (
+        {linkedin.length > VISIBLE_LINKEDIN && (
           <Button
             variant="text"
             size="large"
             onClick={() => setExpanded((v) => !v)}
             endIcon={<ExpandMoreIcon sx={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }} />}
           >
-            {expanded ? 'Show fewer' : `Show all ${writing.length} LinkedIn posts`}
+            {expanded ? 'Show fewer' : `Show all ${linkedin.length} LinkedIn posts`}
           </Button>
         )}
         <Button

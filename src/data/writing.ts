@@ -1,5 +1,5 @@
 /**
- * Selected LinkedIn posts on AI security and agent risk.
+ * Selected LinkedIn posts (AI security, supply chain, LLM infrastructure). Order does not matter: the UI sorts by date.
  * Links only: the posts live on LinkedIn, this site does not republish them.
  */
 export interface WritingLink {
@@ -61,5 +61,77 @@ export const writing: WritingLink[] = [
     summary: "Hijacked trivy-action tags stole CI secrets and LiteLLM's PyPI token; why you pin actions to commits, not tags.",
     tags: ['CI/CD security', 'Supply chain', 'GitHub Actions'],
     url: 'https://www.linkedin.com/posts/akaash-trivedi_supplychainsecurity-devsecops-githubactions-activity-7453471835255607296-feij',
+  },
+  {
+    title: 'The feature npm built to kill token theft just shipped 96 backdoored packages',
+    date: '2026-06-05',
+    topic: 'Supply chain',
+    summary: 'Attackers abused npm trusted publishing to push 96 malicious versions across 32 Red Hat packages with no token stolen, and why the trust boundary just moved to the pipeline.',
+    tags: ['Supply chain', 'CI/CD security', 'npm', 'GitHub Actions'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_devsecops-supplychainsecurity-appsec-activity-7468676710109216768-VdGd',
+  },
+  {
+    title: 'The suspension lasted 7 minutes. The outage lasted 8 hours.',
+    date: '2026-05-29',
+    topic: 'Distributed systems',
+    summary: 'A GCP account suspension was reversed in minutes, yet Railway stayed down for hours because its routing control plane lived on one cloud.',
+    tags: ['Distributed systems', 'SRE', 'Cloud architecture'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_distributedsystems-sre-platformengineering-activity-7466154560605077504-A8qn',
+  },
+  {
+    title: "A single git push can execute arbitrary commands on GitHub's backend servers",
+    date: '2026-04-29',
+    topic: 'AppSec',
+    summary: 'CVE-2026-3854 turned unsanitized push options into remote code execution, and 88% of GitHub Enterprise Server customers had not patched seven weeks later.',
+    tags: ['AppSec', 'GitHub', 'CVE'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_appsec-devsecops-github-activity-7455280427445112832-OA7u',
+  },
+  {
+    title: "The attack didn't start at Vercel",
+    date: '2026-04-23',
+    topic: 'Supply chain',
+    summary: "A compromised third-party AI tool gave attackers a Vercel employee's Google Workspace account, and why every OAuth integration widens your blast radius.",
+    tags: ['Supply chain', 'OAuth', 'AI tooling'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_supplychainsecurity-aiappsec-oauthsecurity-activity-7453109349180211202-4Dhu',
+  },
+  {
+    title: "Your Inference Provider's Hidden Controls",
+    date: '2026-04-22',
+    topic: 'LLM inference',
+    summary: 'KV cache eviction and batching set a latency floor you cannot see, so benchmark under load and watch cache hit rate.',
+    tags: ['LLM inference', 'Latency', 'KV cache'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_llmops-aiinfrastructure-inferenceeconomics-activity-7452750145663766528-gQGK',
+  },
+  {
+    title: 'Introducing the Agent Readiness score. Is your site agent-ready?',
+    date: '2026-04-20',
+    topic: 'Platform engineering',
+    summary: "Most sites are opaque to AI agents, and Cloudflare's Agent Readiness score treats llms.txt and structured metadata as a systems design problem.",
+    tags: ['Agent readiness', 'llms.txt', 'Platform engineering'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_aiengineering-platformengineering-distributedsystems-activity-7452014591468896256-QSuA',
+  },
+  {
+    title: 'Opus 4.7 ships at the same price. Your bill might not agree.',
+    date: '2026-04-17',
+    topic: 'LLM costs',
+    summary: 'A new tokenizer can use up to 35% more tokens at the same unit price, which makes token counts a capacity planning metric.',
+    tags: ['LLM inference', 'LLM costs', 'Claude'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_aiinfrastructure-claudeai-llmops-activity-7450907455955312640-RwSn',
+  },
+  {
+    title: 'Stop using your most expensive model for your cheapest tasks',
+    date: '2026-04-16',
+    topic: 'LLM routing',
+    summary: 'Hard-coding one model is the monolith of the AI era; a routing layer sends each request to a frontier, mid-tier or small model.',
+    tags: ['LLM inference', 'LLM routing', 'LLM costs'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_ai-infrastructure-llmops-activity-7450558689071259648-Sa32',
+  },
+  {
+    title: 'AWS Summit NYC 2026: the wrapper era is over',
+    date: '2026-06-22',
+    topic: 'AWS Summit',
+    summary: 'A day at AWS Summit NYC on what is actually shipping for agents in production, from knowledge graphs to security at machine speed.',
+    tags: ['Agentic AI', 'AWS', 'Conferences'],
+    url: 'https://www.linkedin.com/posts/akaash-trivedi_aws-summit-nyc-2026-activity-7474820598993649664-XkkQ',
   },
 ];
